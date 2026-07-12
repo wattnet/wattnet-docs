@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block extrahead %}
+  {{ super() }}
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="https://analytics.wattnet.eu/js/pa-W_yepVtdmj3WBHd0x_GTj.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
+{% endblock %}

@@ -1,0 +1,120 @@
+[project]
+site_name = "Wattnet Documentation"
+site_description = "Real-time, historical and forecasted data on the carbon and water impact of electricity consumption across Europe."
+site_author = "Wattnet Team"
+site_url = "https://docs.wattnet.eu"
+
+copyright = "&copy; 2026 Spanish National Research Council (CSIC). All rights reserved."
+
+repo_url = "https://github.com/wattnet"
+repo_name = "wattnet"
+
+nav = [
+  { "Home" = "index.md" },
+  { "User Guide" = [
+    { "Overview" = "user-guide/index.md" },
+    { "Dashboard" = [
+      { "Dashboard Walkthrough" = "user-guide/dashboard-walkthrough.md" },
+    ] },
+  ] },
+  { "Methodology" = "methodology/index.md" },
+  { "Architecture" = "architecture/index.md" },
+  { "Technical Reference" = "reference/index.md" },
+]
+
+extra_css = ["stylesheets/extra.css"]
+extra_javascript = ["javascripts/external-links.js"]
+
+[project.theme]
+logo = "assets/logo.svg"
+favicon = "assets/favicon.png"
+language = "en"
+custom_dir = "overrides"
+# Fonts are self-hosted (see docs/stylesheets/extra.css @font-face rules)
+# instead of loaded from Google Fonts, so the theme's own font block is
+# disabled here to avoid emitting a fonts.googleapis.com <link>.
+font = false
+
+features = [
+  "content.code.annotate",
+  "content.code.copy",
+  "content.code.select",
+  "content.tabs.link",
+  "navigation.expand",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.instant.prefetch",
+  "navigation.path",
+  "navigation.sections",
+  "navigation.prune",
+  "navigation.tabs",
+  "navigation.tabs.sticky",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+  "search.suggest",
+  "toc.follow",
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/wattnet"
+name = "Wattnet on GitHub"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/docker"
+link = "https://hub.docker.com/u/wattnet"
+name = "Wattnet on Docker Hub"
+
+[[project.extra.social]]
+icon = "fontawesome/solid/globe"
+link = "https://wattnet.eu"
+name = "wattnet.eu"
+
+[project.markdown_extensions.abbr]
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.attr_list]
+[project.markdown_extensions.def_list]
+[project.markdown_extensions.footnotes]
+[project.markdown_extensions.md_in_html]
+[project.markdown_extensions.toc]
+permalink = true
+[project.markdown_extensions.pymdownx.betterem]
+[project.markdown_extensions.pymdownx.caret]
+[project.markdown_extensions.pymdownx.details]
+[project.markdown_extensions.pymdownx.emoji]
+emoji_generator = "zensical.extensions.emoji.to_svg"
+emoji_index = "zensical.extensions.emoji.twemoji"
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+line_spans = "__span"
+pygments_lang_class = true
+[project.markdown_extensions.pymdownx.inlinehilite]
+[project.markdown_extensions.pymdownx.mark]
+[project.markdown_extensions.pymdownx.smartsymbols]
+[project.markdown_extensions.pymdownx.superfences]
+custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" }
+]
+[project.markdown_extensions.pymdownx.tabbed]
+alternate_style = true
+[project.markdown_extensions.pymdownx.tasklist]
+custom_checkbox = true
+[project.markdown_extensions.pymdownx.tilde]

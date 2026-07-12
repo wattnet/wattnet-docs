@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "wattnet-docs"
+version = "0.1.0"
+description = "Documentation for the Wattnet platform"
+authors = ["Jaime Iglesias Blanco <iglesias@ifca.es>"]
+readme = "README.md"
+package-mode = false   # docs-only repo, not an installable Python package
+
+# Docs dependencies — no runtime code, only build tools
+[tool.poetry.dependencies]
+python = ">=3.10,<3.15"
+zensical = "^0.0.47"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

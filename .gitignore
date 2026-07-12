@@ -1,0 +1,43 @@
+# ── Zensical ──────────────────────────────────────────────────────────────────
+# built static site — never commit this
+site/
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# ── Poetry ────────────────────────────────────────────────────────────────────
+# poetry.lock should be committed in application repos but is optional here
+# since this is a docs-only repo with no runtime dependencies.
+# Uncomment the next line if you prefer not to commit it:
+# poetry.lock
+
+# ── Testing / coverage ────────────────────────────────────────────────────────
+.tox/
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
+
+# ── Editors ───────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
