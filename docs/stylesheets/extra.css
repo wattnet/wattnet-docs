@@ -9,8 +9,9 @@
 	font-weight: 300 900;
 	font-display: swap;
 	src: url("../assets/fonts/red-hat-display-latin-ext.woff2") format("woff2");
-	unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
-		U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+	unicode-range:
+		U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+		U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
 		U+2C60-2C7F, U+A720-A7FF;
 }
 
@@ -20,8 +21,9 @@
 	font-weight: 300 900;
 	font-display: swap;
 	src: url("../assets/fonts/red-hat-display-latin.woff2") format("woff2");
-	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
-		U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+		U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -30,8 +32,9 @@
 	font-weight: 300 700;
 	font-display: swap;
 	src: url("../assets/fonts/red-hat-mono-latin-ext.woff2") format("woff2");
-	unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
-		U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+	unicode-range:
+		U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+		U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
 		U+2C60-2C7F, U+A720-A7FF;
 }
 
@@ -41,8 +44,9 @@
 	font-weight: 300 700;
 	font-display: swap;
 	src: url("../assets/fonts/red-hat-mono-latin.woff2") format("woff2");
-	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
-		U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+		U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 :root {
@@ -51,21 +55,24 @@
 }
 
 :root > * {
-	--md-primary-fg-color: #3a78e0;
+	--md-primary-fg-color: #5487e7;
 	--md-primary-fg-color--light: #7aa3eb;
-	--md-primary-fg-color--dark: #224ea4;
+	--md-primary-fg-color--dark: #5487e7;
 	--md-primary-bg-color: #ffffff;
 
-	--md-accent-fg-color: #94ce24;
-	--md-accent-fg-color--transparent: rgba(148, 206, 36, 0.1);
+	--md-accent-fg-color: #70a01b;
+	--md-accent-fg-color--transparent: rgba(112, 160, 27, 0.1);
 	--md-accent-bg-color: #0b1c38;
 }
 
 [data-md-color-scheme="slate"] {
-	--md-primary-fg-color: #224ea4;
+	--md-primary-fg-color: #5487e7;
 	--md-primary-fg-color--light: #3a78e0;
 	--md-primary-fg-color--dark: #0f2868;
 	--md-default-bg-color: #020617;
+
+	--md-accent-fg-color: #94ce24;
+	--md-accent-fg-color--transparent: rgba(148, 206, 36, 0.1);
 }
 
 h1,
@@ -81,6 +88,18 @@ h6,
 
 body {
 	word-spacing: 0.08em;
+}
+
+.md-typeset p,
+.md-typeset li {
+	text-align: justify;
+	text-justify: inter-word;
+}
+
+.md-typeset code,
+.md-typeset pre,
+.md-typeset kbd {
+	font-weight: 500;
 }
 
 .md-typeset,
@@ -176,7 +195,7 @@ body {
 
 [data-md-color-scheme="default"] .md-footer-meta a:hover,
 [data-md-color-scheme="default"] .md-social__link:hover {
-	color: #224ea4;
+	color: #5487e7;
 }
 
 /* Home page — landing-page style hero, mirrors wattnet.eu's layout. */
@@ -188,6 +207,10 @@ body {
 }
 
 .home-hero > h1 {
+	margin-top: 0;
+}
+
+.home-hero > p:first-child {
 	margin-top: 0;
 }
 
@@ -292,7 +315,7 @@ body {
 	margin-bottom: 0.75rem;
 	border-radius: 0.75rem;
 	background: linear-gradient(135deg, rgba(58, 120, 224, 0.16), rgba(58, 120, 224, 0.28));
-	color: #224ea4;
+	color: #5487e7;
 	transition: transform 0.3s ease;
 }
 
@@ -335,7 +358,13 @@ body {
 	color: var(--md-default-fg-color);
 }
 
+.md-typeset .grid.cards.cards--linked > ul > li {
+	display: flex;
+	flex-direction: column;
+}
+
 .md-typeset .grid.cards.cards--linked > ul > li > p:last-child {
+	margin-top: auto;
 	margin-bottom: 0;
 }
 

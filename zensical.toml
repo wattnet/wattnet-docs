@@ -16,6 +16,11 @@ nav = [
     { "Dashboard" = [
       { "Dashboard Walkthrough" = "user-guide/dashboard-walkthrough.md" },
     ] },
+    { "API" = [
+      { "API Access" = "user-guide/api/api-access.md" },
+      { "API Documentation" = "user-guide/api/api-documentation.md" },
+      { "API Data Model" = "user-guide/api/api-data-model.md" },
+    ] },
   ] },
   { "Methodology" = "methodology/index.md" },
   { "Architecture" = "architecture/index.md" },
@@ -47,7 +52,6 @@ features = [
   "navigation.instant.prefetch",
   "navigation.path",
   "navigation.sections",
-  "navigation.prune",
   "navigation.tabs",
   "navigation.tabs.sticky",
   "navigation.top",
