@@ -22,13 +22,23 @@ nav = [
       { "API Data Model" = "user-guide/api/api-data-model.md" },
     ] },
   ] },
-  { "Methodology" = "methodology/index.md" },
+  { "Methodology" = [
+    { "Overview" = "methodology/index.md" },
+    { "Datasources" = "methodology/datasources.md" },
+    { "Zone Definition" = "methodology/zone-definition.md" },
+    { "Footprint Factors" = "methodology/impact-factors.md" },
+    { "Flow Tracing" = "methodology/flow-tracing.md" },
+  ] },
   { "Architecture" = "architecture/index.md" },
   { "Technical Reference" = "reference/index.md" },
 ]
 
 extra_css = ["stylesheets/extra.css"]
-extra_javascript = ["javascripts/external-links.js"]
+extra_javascript = [
+  "javascripts/external-links.js",
+  "javascripts/mathjax.js",
+  "https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js",
+]
 
 [project.theme]
 logo = "assets/logo.svg"
@@ -100,6 +110,8 @@ name = "wattnet.eu"
 [project.markdown_extensions.md_in_html]
 [project.markdown_extensions.toc]
 permalink = true
+[project.markdown_extensions.pymdownx.arithmatex]
+generic = true
 [project.markdown_extensions.pymdownx.betterem]
 [project.markdown_extensions.pymdownx.caret]
 [project.markdown_extensions.pymdownx.details]
