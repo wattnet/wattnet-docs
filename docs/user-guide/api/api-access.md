@@ -1,7 +1,7 @@
 ---
 tags:
-  - API
-  - Guide
+    - API
+    - Guide
 ---
 
 # API Access
@@ -20,7 +20,7 @@ granted, you can register and generate a Bearer token as described below.
 ## Token service
 
 The token service is available at
-[https://api.wattnet.eu/v1/token-request/](https://api.wattnet.eu/v1/token-request/).
+[https://api.wattnet.eu/token-request/](https://api.wattnet.eu/token-request/).
 You can also interact with it directly through the browser at that URL.
 
 ### 1. Register
@@ -29,7 +29,7 @@ This step only needs to be done once — after that, you can go straight to
 obtaining a token with the same credentials.
 
 ```bash
-curl -X POST "https://api.wattnet.eu/v1/token-request/register" \
+curl -X POST "https://api.wattnet.eu/token-request/register" \
   -H "Content-Type: application/json" \
   -d '{ "email": "your_email", "password": "your_password" }'
 ```
@@ -39,7 +39,7 @@ curl -X POST "https://api.wattnet.eu/v1/token-request/register" \
 Tokens are valid for 1 day and can be refreshed using the same credentials:
 
 ```bash
-curl -X POST "https://api.wattnet.eu/v1/token-request/get_token" \
+curl -X POST "https://api.wattnet.eu/token-request/get_token" \
   -H "Content-Type: application/json" \
   -d '{ "email": "your_email", "password": "your_password" }'
 ```
