@@ -21,6 +21,12 @@ nav = [
       { "API Documentation" = "user-guide/api/api-documentation.md" },
       { "API Data Model" = "user-guide/api/api-data-model.md" },
     ] },
+    { "Python Client" = [
+      { "Quickstart" = "user-guide/python-client/python-client-quickstart.md" },
+      { "Authentication" = "user-guide/python-client/python-client-authentication.md" },
+      { "Reference" = "user-guide/python-client/python-client-reference.md" },
+      { "Notebook Example" = "user-guide/python-client/python-client-notebook.md" },
+    ] },
   ] },
   { "Methodology" = [
     { "Overview" = "methodology/index.md" },

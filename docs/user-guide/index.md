@@ -12,3 +12,14 @@ programmatically through the API.
   interactive API reference.
 - **[API Data Model](api/api-data-model.md)** — how to interpret the data
   quality flags returned in API results.
+- **[Python Client](python-client/python-client-quickstart.md)**: install
+  and use `wattnet-client`, the official Python client, to query Wattnet
+  data as pandas DataFrames.
+- **[Python Client Authentication](python-client/python-client-authentication.md)**:
+  how to authenticate with a bearer token or email/password.
+- **[Python Client Reference](python-client/python-client-reference.md)**:
+  the full list of available methods, configuration options, and error
+  handling.
+- **[Python Client Notebook Example](python-client/python-client-notebook.md)**:
+  a walkthrough of the runnable example notebook, with real API output for
+  every method.
