@@ -202,7 +202,7 @@ minimum temporal granularity of **15 minutes** is defined for all zones, so
 all data is processed and reported at this interval.
 
 This approach is possible because ENTSO-E reports **average power (in
-Watts)** for each time interval — not **total energy (in Watt-hours)**.
+Watts)** for each time interval, not **total energy (in Watt-hours)**.
 Power (W) is an instantaneous or average rate of energy generation or
 consumption, meaning it is independent of the interval length. Therefore, a
 value reported as the average power over 1 hour can be applied to shorter

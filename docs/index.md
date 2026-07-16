@@ -24,7 +24,7 @@ through an open REST API.
 This site is the central documentation hub for the Wattnet platform. Whether
 you're integrating the API into your own application, researching the
 methodology behind the carbon and water footprint calculations, or exploring
-how the system is built, you'll find it here — from onboarding guides for
+how the system is built, you'll find it here: from onboarding guides for
 new users to deployment references for engineers running the underlying
 `wattnet-api`, `wattnet-core`, and `wattnet-forecast` services.
 
@@ -79,7 +79,7 @@ new users to deployment references for engineers running the underlying
 
 - :material-water: **Water footprint**
 
-    Beyond carbon — water consumption and withdrawal metrics for each
+    Beyond carbon: water consumption and withdrawal metrics for each
     energy source.
 
 - :material-map: **Zone coverage**

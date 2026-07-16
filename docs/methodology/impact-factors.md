@@ -35,22 +35,22 @@ calculations, including their sources and methodologies for determination.
 
 - <a name="ref1">**[1] IPCC 2006 (Official / Guidelines)**</a><br>
   [2006 IPCC Guidelines for National Greenhouse Gas Inventories, Vol.2 Ch.2](https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_2_Ch2_Stationary_Combustion.pdf)<br>
-  Year: 2006 — Scope: Operational
+  Year: 2006, Scope: Operational
 - <a name="ref2">**[2] IPCC 2014 (Official / Report)**</a><br>
   [IPCC WG3 Annex III](https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7)<br>
-  Year: 2014 — Scope: Operational & Life-cycle
+  Year: 2014, Scope: Operational & Life-cycle
 - <a name="ref3">**[3] UNECE 2022 (Official / Report)**</a><br>
   [LCA Report - UNECE 2022](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)<br>
-  Year: 2022 — Scope: Life-cycle
+  Year: 2022, Scope: Life-cycle
 - <a name="ref4">**[4] Red Eléctrica de España (REE) 2021**</a><br>
   [Carbon intensity report](https://api.esios.ree.es/documents/591/download?locale=es)<br>
-  Year: 2021 — Scope: Operational
+  Year: 2021, Scope: Operational
 - <a name="ref5">**[5] Gagnon et al. 2002 (Scientific Article)**</a><br>
   [Gagnon et al. 2002 DOI](https://doi.org/10.1016/S0301-4215(02)00088-5)<br>
-  Year: 2002 — Scope: Life-cycle
+  Year: 2002, Scope: Life-cycle
 - <a name="ref6">**[6] Zero Waste Europe 2019 (Official / Report)**</a><br>
   [ZWE Policy Briefing 2019](https://zerowasteeurope.eu/wp-content/uploads/edd/2019/09/ZWE_Policy-briefing_The-impact-of-Waste-to-Energy-incineration-on-Climate.pdf)<br>
-  Year: 2019 — Scope: Life-cycle
+  Year: 2019, Scope: Life-cycle
 
 !!! note
 
@@ -61,13 +61,13 @@ calculations, including their sources and methodologies for determination.
 
 - **Parliament UK 2006 (Official / Report)**<br>
   [Parliament Research Briefing](https://researchbriefings.files.parliament.uk/documents/POST-PN-268/POST-PN-268.pdf)<br>
-  Year: 2006 — Scope: Life-cycle
+  Year: 2006, Scope: Life-cycle
 - **French Agency for Ecological Transition (Official / Report)**<br>
   [French Agency Webservice](https://viewer.webservice-energy.org/incer-acv/app/)<br>
   Scope: Life-cycle
 - **WNA Report 2011 (Official / Report)**<br>
   [World Nuclear Association Report](https://world-nuclear.org/images/articles/comparison_of_lifecycle1.pdf)<br>
-  Year: 2011 — Scope: Life-cycle
+  Year: 2011, Scope: Life-cycle
 
 ## Water Use per Electricity Production Type
 
@@ -95,10 +95,10 @@ calculations, including their sources and methodologies for determination.
 
 - <a name="wref1">**[1] Vanham et al. 2019 (Scientific Article)**</a><br>
   [DOI: 10.1088/1748-9326/ab374a](https://doi.org/10.1088/1748-9326/ab374a)<br>
-  Year: 2019 — Scope: Operation & Life-cycle
+  Year: 2019, Scope: Operation & Life-cycle
 - <a name="wref2">**[2] UNECE 2022 (Official / Report)**</a><br>
   [UNECE LCA Report](https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf)<br>
-  Year: 2022 — Scope: Life-cycle
+  Year: 2022, Scope: Life-cycle
 
 !!! note
 
@@ -110,16 +110,16 @@ calculations, including their sources and methodologies for determination.
 
 - **UNESCO-IHE 2008 (Official / Report)**<br>
   [Water Footprint Bioenergy Report](https://www.waterfootprint.org/resources/Report29-WaterFootprintBioenergy.pdf)<br>
-  Year: 2008 — Scope: Life-cycle
+  Year: 2008, Scope: Life-cycle
 - **Mekonnen et al. 2015 (Scientific Article)**<br>
   [DOI: 10.1039/c5ew00026b](https://doi.org/10.1039/c5ew00026b)<br>
-  Year: 2015 — Scope: Life-cycle
+  Year: 2015, Scope: Life-cycle
 - **Jin et al. 2019 (Scientific Article)**<br>
   [ScienceDirect Article](https://www.sciencedirect.com/science/article/pii/S1364032119305994?ref=pdf_download&fr=RR-2&rr=945b2a228fa5cbc6)<br>
-  Year: 2019 — Scope: Life-cycle
+  Year: 2019, Scope: Life-cycle
 - **Institute of Global Sustainability, Boston University (Lin et al. 2019/2024)**<br>
   [Visualizing Energy Water Use](https://visualizingenergy.org/what-methods-of-electricity-generation-use-the-most-water/)<br>
-  Year: 2019 / 2024 — Scope: Life-cycle
+  Year: 2019 / 2024, Scope: Life-cycle
 
 ## Data Files
 

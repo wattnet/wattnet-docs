@@ -117,7 +117,7 @@ Elexon's Insights Solution (BMRS) API only covers generation and demand for
 the Great Britain zone. Cross-border physical flows are not available from
 Elexon, so imports and exports for Great Britain are instead sourced from
 the [ENTSO-E Transparency Platform](#entso-e). Northern Ireland is not
-covered by Elexon at all — it is sourced entirely from ENTSO-E, since it
+covered by Elexon at all; it is sourced entirely from ENTSO-E, since it
 belongs to the Ireland bidding zone rather than the GB one (see [Zone
 Definition](zone-definition.md#regional-examples)).
 

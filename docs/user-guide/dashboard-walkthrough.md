@@ -18,7 +18,7 @@ exchanges, explore historical trends in the zone detail panel, and use the
 ## What you can do
 
 - Navigate the interactive map of European bidding zones.
-- Switch between environmental metrics — Carbon Footprint, Water Impact,
+- Switch between environmental metrics: Carbon Footprint, Water Impact,
   and Green Score.
 - Enable flow tracing to see cross-border electricity exchanges.
 - Explore historical trends in the zone detail panel.
@@ -28,4 +28,4 @@ exchanges, explore historical trends in the zone detail panel, and use the
 ## Getting started
 
 Head to [dashboard.wattnet.eu](https://dashboard.wattnet.eu) to start
-exploring — no account is required for the public data views.
+exploring; no account is required for the public data views.
