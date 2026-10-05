@@ -12,7 +12,14 @@
 
 # Documentation
 
-[![License](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fdocs.wattnet.eu&label=docs.wattnet.eu)](https://docs.wattnet.eu)
+[![Deploy](https://github.com/wattnet/wattnet-docs/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/wattnet/wattnet-docs/actions/workflows/deploy.yml)
+[![GitHub release](https://img.shields.io/github/v/release/wattnet/wattnet-docs)](https://github.com/wattnet/wattnet-docs/releases)
+[![Last commit](https://img.shields.io/github/last-commit/wattnet/wattnet-docs)](https://github.com/wattnet/wattnet-docs/commits/main)
+[![GitHub stars](https://img.shields.io/github/stars/wattnet/wattnet-docs?style=social)](https://github.com/wattnet/wattnet-docs/stargazers)
+[![Built with Zensical](https://img.shields.io/badge/Built_with-Zensical-1A8F7A)](https://zensical.org/)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-FE5196?logo=conventionalcommits&logoColor=white)](https://www.conventionalcommits.org/)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 
 Documentation for the [Wattnet](https://wattnet.eu) platform,
