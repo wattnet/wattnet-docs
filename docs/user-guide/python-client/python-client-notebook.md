@@ -25,7 +25,7 @@ window for zone `ES` so the results are reproducible:
   `get_exports()`, and `get_mix()`.
 - **Environmental metrics**: `get_footprints()` (including `aggregate=True`
   for a single value over the window), `get_impacts()`, and
-  `get_environmental_score()`.
+  `get_green_score()`.
 - **Shares metrics**: `get_flow_share()`, `get_mix_share()`,
   `get_footprint_share()`, and `get_impact_share()`.
 - **Factors**: `get_factors()`, global emission/consumption factors,

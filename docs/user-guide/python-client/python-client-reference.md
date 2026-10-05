@@ -23,7 +23,7 @@ parameter reference.
 | `get_mix(...)` | `GET /mix` | Flow-traced generation mix by production type |
 | `get_footprints(...)` | `GET /footprints` | Carbon/water footprint of consumption |
 | `get_impacts(...)` | `GET /impacts` | Water impact of consumption |
-| `get_environmental_score(...)` | `GET /environmental-score` | EnvironmentalScore (0–100) of consumption |
+| `get_green_score(...)` | `GET /green-score` | GreenScore (0–100) of consumption |
 | `get_flow_share(...)` | `GET /flow-share` | Share of a zone's production exported to each destination |
 | `get_mix_share(...)` | `GET /mix-share` | Share of a zone's mix coming from each origin |
 | `get_footprint_share(...)` | `GET /footprint-share` | Footprint decomposed by origin zone |
