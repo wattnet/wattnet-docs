@@ -5,7 +5,7 @@
     <source media="(prefers-color-scheme: light)"
             srcset="https://github.com/wattnet/.github/raw/main/images/wattnet-logo-full-light-transparent-cropped.png" />
     <img src="https://github.com/wattnet/.github/raw/main/images/wattnet-logo-full-light-transparent-cropped.png"
-         alt="Wattnet Logo"
+         alt="wattnet Logo"
          width="300" />
   </picture>
 </div>
@@ -22,7 +22,7 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-FE5196?logo=conventionalcommits&logoColor=white)](https://www.conventionalcommits.org/)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 
-Documentation for the [Wattnet](https://wattnet.eu) platform,
+Documentation for the [wattnet](https://wattnet.eu) platform,
 published at [docs.wattnet.eu](https://docs.wattnet.eu). Built with
 [Zensical](https://zensical.org/).
 
