@@ -11,17 +11,27 @@ hide:
 
 # Wattnet Documentation
 
-Wattnet makes the environmental cost of electricity visible and actionable. It
-aggregates real-time, historical and forecasted data on the **carbon** and
-**water** impact of electricity consumption across Europe, and exposes it
-through an open REST API.
+Wattnet makes the environmental cost of electricity visible and actionable.
+It aggregates real-time, historical and forecasted data on the **carbon**
+and **water** impact of electricity consumption across 60 European zones,
+at 15-minute resolution, and exposes it through an open REST API.
 
 [Get Started](user-guide/index.md){ .md-button .md-button--primary }
 [Explore the API](https://api.wattnet.eu/docs){ .md-button }
 
 </div>
 
-This site is the central documentation hub for the Wattnet platform. Whether
+Most tools that track the environmental cost of electricity reduce it to a
+single number, carbon intensity. Wattnet publishes carbon and water in
+parallel, each under two scopes (operational and life cycle) and two
+coverages (local generation and consumption after cross-border exchanges),
+so that trade-offs a single indicator hides become visible: a zone with
+excellent carbon intensity can carry a high water impact. Every value it
+publishes states whether it came from an official publication, from the
+system's own estimation, or from the forecast engine, and whether it can
+still be recalculated.
+
+This site is the central documentation hub for the platform. Whether
 you're integrating the API into your own application, researching the
 methodology behind the carbon and water footprint calculations, or exploring
 how the system is built, you'll find it here: from onboarding guides for
@@ -40,7 +50,8 @@ new users to deployment references for engineers running the underlying
 
 - :material-flask-outline: **Methodology**
 
-    How carbon and water footprints are calculated.
+    How the metrics are calculated, from data sources and quality control
+    to flow tracing, water scarcity and the forecast model.
 
     [Read more →](methodology/index.md){ .card-read-more }
 
@@ -61,34 +72,36 @@ new users to deployment references for engineers running the underlying
 
 ## Key Features
 
-<div class="grid cards cards--features" markdown>
+<div class="grid cards cards--features cards--3col" markdown>
 
 - :material-lightning-bolt: **Real-time data**
 
-    Live carbon intensity and generation mix updated across all supported
-    European zones.
+    Carbon and water metrics at 15-minute resolution across 60 European
+    zones, published as grid operators release their data.
 
 - :material-history: **Historical data**
 
-    Query time series going back years to support long-term research and
-    analysis.
+    Query time series going back years, at the same resolution and with
+    the same quality flags as live data.
 
 - :material-chart-timeline: **Forecasted data**
 
-    Day-ahead forecasts for carbon intensity and generation mix.
+    72-hour forecasts of the environmental metrics: carbon footprint,
+    water footprint and impact, and Environmental Score.
 
-- :material-water: **Water footprint**
+- :material-water: **Beyond carbon**
 
-    Beyond carbon: water consumption and withdrawal metrics for each
-    energy source.
+    Water footprint, water impact weighted by regional and seasonal
+    scarcity (AWARE 2.0), and a Environmental Score combining both.
 
-- :material-map: **Zone coverage**
+- :material-transit-connection-variant: **Consumption, not just production**
 
-    All ENTSO-E bidding zones plus GB (Elexon) and Turkey (EPIAS).
+    Flow tracing attributes cross-border exchanges, so metrics reflect the
+    electricity a zone actually consumes.
 
 - :material-api: **Open API**
 
-    Fully documented REST API with versioning, interactive docs at
+    Versioned REST API, an official Python client, and interactive docs at
     [api.wattnet.eu/docs](https://api.wattnet.eu/docs).
 
 </div>

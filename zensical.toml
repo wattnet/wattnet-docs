@@ -30,10 +30,14 @@ nav = [
   ] },
   { "Methodology" = [
     { "Overview" = "methodology/index.md" },
-    { "Datasources" = "methodology/datasources.md" },
-    { "Zone Definition" = "methodology/zone-definition.md" },
-    { "Footprint Factors" = "methodology/impact-factors.md" },
-    { "Flow Tracing" = "methodology/flow-tracing.md" },
+    { "Inputs" = [
+      { "Energy Datasources" = "methodology/datasources.md" },
+      { "Zone Definition" = "methodology/zone-definition.md" },
+      { "Footprint Factors" = "methodology/impact-factors.md" },
+    ] },
+    { "Calculation" = [
+      { "Flow Tracing" = "methodology/flow-tracing.md" },
+    ] },
   ] },
   { "Architecture" = "architecture/index.md" },
   { "Technical Reference" = "reference/index.md" },

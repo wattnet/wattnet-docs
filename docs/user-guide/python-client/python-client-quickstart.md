@@ -52,7 +52,7 @@ client = WattnetClient(email="you@example.com", password="<your-password>")
 # Every call returns a pandas DataFrame
 df = client.get_generation(zone="ES", production_type="solar")
 df = client.get_footprints(zone="ES", footprint_type="carbon", scope="life-cycle")
-df = client.get_green_score(zone="ES", aggregate=True, start="2026-01-01", end="2026-02-01")
+df = client.get_environmental_score(zone="ES", aggregate=True, start="2026-01-01", end="2026-02-01")
 ```
 
 Filter by coordinates instead of a zone code:
