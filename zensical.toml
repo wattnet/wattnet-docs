@@ -27,6 +27,11 @@ nav = [
       { "Reference" = "user-guide/python-client/python-client-reference.md" },
       { "Notebook Example" = "user-guide/python-client/python-client-notebook.md" },
     ] },
+    { "Home Assistant" = [
+      { "Installation" = "user-guide/home-assistant/home-assistant-installation.md" },
+      { "Dashboard and Entities" = "user-guide/home-assistant/home-assistant-dashboard.md" },
+      { "Reference" = "user-guide/home-assistant/home-assistant-reference.md" },
+    ] },
   ] },
   { "Methodology" = [
     { "Overview" = "methodology/index.md" },
