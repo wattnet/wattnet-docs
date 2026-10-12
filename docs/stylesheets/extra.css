@@ -75,6 +75,13 @@
 	--md-accent-fg-color--transparent: rgba(148, 206, 36, 0.1);
 }
 
+/* Back-to-top button — the default accent hover (#70a01b) is too dark
+   against the light theme; lighten it to the brand's lighter green. */
+[data-md-color-scheme="default"] .md-top:focus,
+[data-md-color-scheme="default"] .md-top:hover {
+	background-color: #94ce24;
+}
+
 h1,
 h2,
 h3,
@@ -198,11 +205,9 @@ body {
 	color: #5487e7;
 }
 
-/* Home page — landing-page style hero, mirrors wattnet.eu's layout. */
+/* Home page — landing-page style hero, mirrors wattnet.eu/about's plain
+   (unboxed) hero: centered content on the page background, no card panel. */
 .home-hero {
-	background: linear-gradient(135deg, rgba(58, 120, 224, 0.12), rgba(148, 206, 36, 0.12));
-	border-radius: 0.75rem;
-	padding: 1.6rem 1.6rem 1.2rem;
 	margin-bottom: 1.2rem;
 }
 
@@ -219,6 +224,18 @@ body {
 	width: 100%;
 	border-radius: 0.5rem;
 	margin-bottom: 1.2rem;
+}
+
+/* Zone map (methodology/zone-definition) — the SVG has a transparent
+   background so a fixed light card is needed underneath; the map's own
+   colors (and its logo) are tuned for a light backdrop and would lose
+   contrast against the slate theme otherwise. */
+.zone-map {
+	display: block;
+	width: 100%;
+	background-color: #e4e8ee;
+	border-radius: 0.5rem;
+	margin: 1.2rem 0;
 }
 
 /* Buttons — mirrors wattnet.eu's btn-primary / btn-outline (global.css) */
@@ -253,8 +270,15 @@ body {
 	box-shadow: none;
 }
 
-/* Feature cards — mirrors wattnet.eu's card component: top accent bar, numbered
-   index, gradient icon badge that scales on hover. */
+/* Card grids — divided-grid treatment mirroring wattnet.eu/about: no
+   per-item card border or rounding, just a thin line between items and a
+   cap on top of the whole grid. No left/right outer border. Numbered index
+   and gradient icon badge are kept as the one accent per item. */
+.md-typeset .grid.cards {
+	gap: 0;
+	border-top: 0.05rem solid var(--md-default-fg-color--lightest);
+}
+
 .md-typeset .grid.cards > ul {
 	counter-reset: card;
 }
@@ -264,24 +288,11 @@ body {
 	position: relative;
 	counter-increment: card;
 	overflow: hidden;
-	border: 0.05rem solid var(--md-default-fg-color--lightest);
-	border-radius: 0.75rem;
-	background-color: var(--md-default-bg-color);
+	border: 0;
+	border-radius: 0;
+	border-bottom: 0.05rem solid var(--md-default-fg-color--lightest);
 	padding: 1.1rem 1rem 1rem;
-	transition:
-		box-shadow 0.3s ease,
-		transform 0.3s ease,
-		border-color 0.3s ease;
-}
-
-.md-typeset .grid.cards > ul > li::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 3px;
-	background: linear-gradient(to right, #3a78e0, #7aa3eb);
+	transition: background-color 0.3s ease;
 }
 
 .md-typeset .grid.cards > ul > li::after {
@@ -297,8 +308,11 @@ body {
 
 .md-typeset .grid.cards > ul > li:hover,
 .md-typeset .grid.cards > ol > li:hover {
-	border-color: var(--md-default-fg-color--lightest);
-	box-shadow: 0 6px 14px rgba(11, 28, 56, 0.07);
+	background-color: rgba(58, 120, 224, 0.06);
+}
+
+.md-typeset .grid.cards.cards--features > ul > li:hover {
+	background-color: rgba(148, 206, 36, 0.06);
 }
 
 .md-typeset .grid.cards > ul > li > p:first-child {
@@ -316,11 +330,6 @@ body {
 	border-radius: 0.75rem;
 	background: linear-gradient(135deg, rgba(58, 120, 224, 0.16), rgba(58, 120, 224, 0.28));
 	color: #5487e7;
-	transition: transform 0.3s ease;
-}
-
-.md-typeset .grid.cards.cards--features > ul > li::before {
-	background: linear-gradient(to right, #94ce24, #c3e878);
 }
 
 .md-typeset .grid.cards.cards--features > ul > li > p:first-child > .twemoji {
@@ -399,6 +408,22 @@ body {
 
 	.md-typeset .grid.cards--4col {
 		grid-template-columns: repeat(4, 1fr);
+	}
+
+	/* Vertical dividers between columns, skipped on the first column of
+	   each row so the grid keeps no left/right outer border. */
+	.md-typeset .grid.cards--3col > ul > li,
+	.md-typeset .grid.cards--3col > ol > li,
+	.md-typeset .grid.cards--4col > ul > li,
+	.md-typeset .grid.cards--4col > ol > li {
+		border-left: 0.05rem solid var(--md-default-fg-color--lightest);
+	}
+
+	.md-typeset .grid.cards--3col > ul > li:nth-child(3n + 1),
+	.md-typeset .grid.cards--3col > ol > li:nth-child(3n + 1),
+	.md-typeset .grid.cards--4col > ul > li:nth-child(4n + 1),
+	.md-typeset .grid.cards--4col > ol > li:nth-child(4n + 1) {
+		border-left: 0;
 	}
 }
 

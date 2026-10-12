@@ -9,7 +9,7 @@ tags:
 
 In this walkthrough, you will learn how to navigate the interactive map,
 switch between environmental metrics (Carbon Footprint, Water Impact, and
-Green Score), enable flow tracing to see cross-border electricity
+Environmental Score), enable flow tracing to see cross-border electricity
 exchanges, explore historical trends in the zone detail panel, and use the
 72-hour forecast to plan energy-intensive workloads at the greenest moment.
 
@@ -19,7 +19,7 @@ exchanges, explore historical trends in the zone detail panel, and use the
 
 - Navigate the interactive map of European bidding zones.
 - Switch between environmental metrics: Carbon Footprint, Water Impact,
-  and Green Score.
+  and Environmental Score.
 - Enable flow tracing to see cross-border electricity exchanges.
 - Explore historical trends in the zone detail panel.
 - Use the 72-hour forecast to plan energy-intensive workloads at the
