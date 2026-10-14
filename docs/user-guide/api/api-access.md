@@ -17,6 +17,8 @@ To request access to the API, get in touch through
 [wattnet.eu/contact](https://wattnet.eu/contact). Once access has been
 granted, you can register and generate a Bearer token as described below.
 
+Use of the API is subject to the [Wattnet terms](https://wattnet.eu/terms).
+
 ## Token service
 
 The token service is available at
