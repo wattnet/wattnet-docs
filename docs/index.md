@@ -135,3 +135,7 @@ This work was developed within the [GreenDIGIT](https://greendigit-project.eu/) 
 ## Trademark Information
 
 The name **WATTNET** and the **Wattnet Logo** are official registered trademarks of the Spanish National Research Council (CSIC), recorded with the European Union Intellectual Property Office (EUIPO). The word mark is registered under [EUTM Application No. 019266832](https://euipo.europa.eu/eSearch/#details/trademarks/019266832), and the logo mark under [EUTM Application No. 019267422](https://euipo.europa.eu/eSearch/#details/trademarks/019267422).
+
+## Terms of Use
+
+Use of the Wattnet service, including the API and the dashboard, is subject to the [Wattnet terms](https://wattnet.eu/terms).
