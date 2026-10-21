@@ -1,5 +1,5 @@
 [project]
-site_name = "Wattnet Documentation"
+site_name = "Wattnet | Documentation"
 site_description = "Real-time, historical and forecasted data on the carbon and water impact of electricity consumption across Europe."
 site_author = "Wattnet Team"
 site_url = "https://docs.wattnet.eu"

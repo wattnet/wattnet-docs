@@ -436,3 +436,29 @@ body {
 .md-social__link svg {
 	vertical-align: baseline;
 }
+
+/* Header title: "wattnet | documentation", mirrors the developer portal brand */
+.md-header__topic .brand-title {
+	display: inline-flex;
+	align-items: center;
+}
+
+.brand-title .wordmark {
+	font-size: 1.2rem;
+	font-weight: 800;
+}
+
+.brand-title .tag {
+	margin-left: 0.8rem;
+	padding-left: 0.6rem;
+	border-left: 1px solid var(--md-default-fg-color--lighter);
+	color: var(--md-default-fg-color--light);
+	font-size: 0.9rem;
+	line-height: 1rem;
+	font-weight: 400;
+}
+
+[data-md-color-scheme="slate"] .brand-title .tag {
+	border-left-color: #334155;
+	color: #94a3b8;
+}
