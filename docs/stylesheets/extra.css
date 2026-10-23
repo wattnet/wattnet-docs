@@ -437,10 +437,12 @@ body {
 	vertical-align: baseline;
 }
 
-/* Header title: "wattnet | documentation", mirrors the developer portal brand */
-.md-header__topic .brand-title {
-	display: inline-flex;
+/* Header title: "wattnet | Section", mirrors the developer portal brand. The wordmark and the
+   bar stay still: only the text after the bar is switched on scroll. */
+.brand-title {
+	display: flex;
 	align-items: center;
+	height: 100%;
 }
 
 .brand-title .wordmark {
@@ -448,17 +450,44 @@ body {
 	font-weight: 800;
 }
 
-.brand-title .tag {
-	margin-left: 0.8rem;
-	padding-left: 0.6rem;
+.tag-switch {
+	display: grid;
+	min-width: 0;
+	margin-left: 0.65rem;
+	padding-left: 0.5rem;
 	border-left: 1px solid var(--md-default-fg-color--lighter);
+	overflow: hidden;
+}
+
+.tag-switch .md-header__topic {
+	position: static;
+	grid-area: 1 / 1;
 	color: var(--md-default-fg-color--light);
 	font-size: 0.9rem;
-	line-height: 1rem;
+	line-height: 1.35;
 	font-weight: 400;
 }
 
-[data-md-color-scheme="slate"] .brand-title .tag {
+[data-md-color-scheme="slate"] .tag-switch {
 	border-left-color: #334155;
+}
+
+[data-md-color-scheme="slate"] .tag-switch .md-header__topic {
 	color: #94a3b8;
+}
+
+/* Brand spacing like the developer portal: 16px from the logo to the wordmark */
+.md-header__button.md-logo {
+	margin-right: 0;
+}
+
+/* Section and page title are the same: nothing to switch to on scroll */
+.md-header__title[data-same] .md-header__topic {
+	opacity: 1;
+	transform: none;
+	pointer-events: auto;
+}
+
+.md-header__title[data-same] .md-header__topic + .md-header__topic {
+	display: none;
 }
