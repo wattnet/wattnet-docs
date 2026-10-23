@@ -16,22 +16,20 @@
       {% set icon = config.theme.icon.menu or "material/menu" %}
       {% include ".icons/" ~ icon ~ ".svg" %}
     </label>
-    <div class="md-header__title" data-md-component="header-title">
+    {% set home = page.url == "" %}
+    {% set title = page.meta.title if page.meta and page.meta.title else page.title %}
+    {% set page_label = "Documentation" if home else title %}
+    {% set section_label = "Documentation" if home else ((page.ancestors | last).title if page.ancestors else title) %}
+    {#- Same text in both: nothing to switch to on scroll (see "data-same" in extra.css). -#}
+    <div class="md-header__title" data-md-component="header-title"{% if section_label == page_label %} data-same{% endif %}>
       <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis brand-title">
-            <span class="wordmark">wattnet</span>
-            <span class="tag">documentation</span>
-          </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
-            {% if page.meta and page.meta.title %}
-              {{ page.meta.title }}
-            {% else %}
-              {{ page.title }}
-            {% endif %}
-          </span>
+        {#- The brand and the bar are fixed. After the bar, the section of the page, switched for its title once its heading scrolls out of view. -#}
+        <div class="brand-title">
+          <span class="wordmark">wattnet</span>
+          <div class="tag-switch">
+            <div class="md-header__topic">{{ section_label | striptags }}</div>
+            <div class="md-header__topic" data-md-component="header-topic">{{ page_label | striptags }}</div>
+          </div>
         </div>
       </div>
     </div>

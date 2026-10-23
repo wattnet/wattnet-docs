@@ -8,6 +8,15 @@
     <title>{{ config.site_name }}</title>
   {% endif %}
 {% endblock %}
+{% block content %}
+  {#- Section and title for the header, which is not rendered again on instant navigation: header-section.js reads them. -#}
+  {% set home = page.url == "" %}
+  {% set title = page.meta.title if page.meta and page.meta.title else page.title %}
+  <span hidden
+        data-header-section="{{ 'Documentation' if home else ((page.ancestors | last).title if page.ancestors else title) | striptags | e }}"
+        data-header-title="{{ 'Documentation' if home else title | striptags | e }}"></span>
+  {{ super() }}
+{% endblock %}
 {% block extrahead %}
   {{ super() }}
   <!-- Privacy-friendly analytics by Plausible -->
