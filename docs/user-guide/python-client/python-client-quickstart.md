@@ -17,8 +17,9 @@ no manual HTTP calls or JSON flattening required.
   `client.get_footprints(...)`, etc., mirroring the API 1:1.
 - **DataFrames by default**: every method returns a tidy `pandas.DataFrame`.
   Need the raw JSON instead? Use `WattnetRawClient`, see [Reference](python-client-reference.md#raw-json-access).
-- **Two ways to authenticate**: a static bearer token, or an email/password
-  pair; the library fetches and caches tokens for you. See
+- **Two ways to authenticate**: the `client_id` and `client_secret` of a
+  credential, or a static bearer token; the library fetches and caches tokens
+  for you. See
   [Authentication](python-client-authentication.md).
 - **Typed, autocomplete-friendly**: zone codes, production types, footprint
   scopes, etc. are typed for IDE/Jupyter tab-completion.
@@ -43,11 +44,11 @@ Requires Python 3.10–3.14.
 ```python
 from wattnet.client import WattnetClient
 
-# Option 1: a pre-issued bearer token
-client = WattnetClient(token="<your-token>")
+# Option 1: a credential (the client fetches and caches a token for you)
+client = WattnetClient(client_id="<your-client-id>", client_secret="<your-client-secret>")
 
-# Option 2: email + password (the client fetches and caches a token for you)
-client = WattnetClient(email="you@example.com", password="<your-password>")
+# Option 2: a pre-issued bearer token
+client = WattnetClient(token="<your-token>")
 
 # Every call returns a pandas DataFrame
 df = client.get_generation(zone="ES", production_type="solar")

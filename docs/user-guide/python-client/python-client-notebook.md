@@ -53,7 +53,7 @@ export WATTNET_TOKEN=<your-token>
 jupyter notebook examples/quickstart.ipynb
 ```
 
-Never hardcode a token or password into the notebook. Always read it from
+Never hardcode a token or a secret into the notebook. Always read it from
 an environment variable, as the first cell does with
 `os.environ["WATTNET_TOKEN"]`. See [Authentication](python-client-authentication.md)
 for how to obtain a token.

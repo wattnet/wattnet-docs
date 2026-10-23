@@ -16,7 +16,7 @@ programmatically through the API.
   and use `wattnet-client`, the official Python client, to query Wattnet
   data as pandas DataFrames.
 - **[Python Client Authentication](python-client/python-client-authentication.md)**:
-  how to authenticate with a bearer token or email/password.
+  how to authenticate with a credential or a bearer token.
 - **[Python Client Reference](python-client/python-client-reference.md)**:
   the full list of available methods, configuration options, and error
   handling.
