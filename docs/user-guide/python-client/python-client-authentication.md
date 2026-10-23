@@ -6,48 +6,27 @@ tags:
 
 # Python Client Authentication
 
-`WattnetClient` (and `WattnetRawClient`) support two ways to authenticate,
-passed as constructor arguments.
+`WattnetClient` (and `WattnetRawClient`) support two ways to authenticate, passed as constructor arguments.
 
-## Option 1: a static bearer token
+## Option 1: a credential
 
-Pass a token obtained as described in [API Access](../api/api-access.md)
-directly:
+```python
+client = WattnetClient(client_id="<your-client-id>", client_secret="<your-client-secret>")
+```
+
+Create the credential in the [developer portal](https://developer.wattnet.eu), as described in [API Access](../api/api-access.md). If you do not have an account yet, you can [register for one](../api/api-access.md#1-create-a-credential) there. The client exchanges it for a bearer token with the OAuth 2.0 `client_credentials` grant the first time it is needed, keeps the token in memory, and renews it once 80 % of its lifetime has passed (but never later than a minute before it expires). If the API still rejects the cached token as expired (a `401` response), the client gets a new one and retries the request once.
+
+Read the secret from an environment variable or a secrets manager instead of writing it in your code. The token endpoint is discovered from the issuer (`https://auth.wattnet.eu/realms/wattnet`); set `issuer_url` or `token_url` only if you need to override it, see [Configuration](python-client-reference.md#configuration).
+
+## Option 2: a static bearer token
+
+Pass a token directly, for example one copied from the developer portal to try something quickly:
 
 ```python
 client = WattnetClient(token="<your-token>")
 ```
 
-The client uses this token as-is for every request. Since it cannot be
-refreshed by the library, you are responsible for replacing it once it
-expires (tokens are valid for 1 day).
-
-## Option 2: email and password
-
-```python
-client = WattnetClient(email="you@example.com", password="<your-password>")
-```
-
-Credentials are exchanged for a bearer token via the wattnet token-request
-service (`POST /get_token`), which the client calls transparently the first
-time it's needed. The token is cached in memory until shortly before its
-`expires_at` (as reported by the server, typically ~24h), then silently
-refreshed on the next call, including a one-time retry if the API itself
-rejects the cached token as expired (a `401` response).
-
-You must have already registered your email with the token-request service
-before it will be accepted; do that once with `register()`:
-
-```python
-from wattnet.client import register
-
-register("you@example.com", "<your-password>")  # returns a confirmation message
-```
-
-`email` must be pre-authorized server-side by the wattnet team (see
-[Requesting access](../api/api-access.md#requesting-access)), otherwise
-registration fails with an `AuthenticationError`. Registering an
-already-registered email is a harmless no-op.
+The client uses this token as is for every request. Since it cannot be refreshed by the library, you are responsible for replacing it once it expires (tokens are valid for 1 hour). You cannot combine `token` with `client_id` and `client_secret`.
 
 ## Closing the client
 
@@ -66,7 +45,6 @@ never any credentials.
 ## Errors
 
 Authentication problems raise `wattnet.client.AuthenticationError`, for
-example an invalid token, an incorrect email/password pair, or registering
-an email that hasn't been granted access. See [Error
+example an invalid token, or a `client_id` and `client_secret` that Keycloak rejects. See [Error
 handling](python-client-reference.md#error-handling) for the full exception
 hierarchy.

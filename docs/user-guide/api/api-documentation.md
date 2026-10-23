@@ -23,17 +23,6 @@ Model](api-data-model.md).
 The API is versioned. The current version is `v1`; the base URL is
 [https://api.wattnet.eu/v1/](https://api.wattnet.eu/v1/).
 
-## Signing in
+## Authorizing in the interactive docs
 
-The interactive docs support sign-in via OAuth, using either a Google or a
-GitHub social account.
-
-!!! note "Authentication note"
-
-    The credentials used for the token service are currently separate from
-    those used to access the API documentation interface. At the moment,
-    access to the API docs only works via social login (GitHub or Google);
-    the email and password you use to [obtain a Bearer
-    token](api-access.md#2-obtain-a-token) will not work to sign in here.
-    This is something we will progressively unify as we onboard more
-    external users.
+The interactive docs have an **Authorize** button. Paste a Bearer token into it, for example the one the developer portal returns for one of your credentials, see [API Access](api-access.md#trying-the-api-by-hand). The token is not stored in your browser.

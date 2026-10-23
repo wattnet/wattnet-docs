@@ -60,7 +60,8 @@ both.
 | Constructor argument | Environment variable | Default |
 | --- | --- | --- |
 | `base_url` | `WATTNET_API_BASE_URL` | `https://api.wattnet.eu/v1` |
-| `token_url` | `WATTNET_TOKEN_URL` | `https://api.wattnet.eu/token-request` |
+| `issuer_url` | `WATTNET_ISSUER_URL` | `https://auth.wattnet.eu/realms/wattnet` |
+| `token_url` | `WATTNET_TOKEN_URL` | read from the issuer's discovery document |
 
 Other constructor options: `session` (bring your own `requests.Session`),
 `timeout`, `retry_count`, `retry_delay`.
