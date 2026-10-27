@@ -17,6 +17,7 @@ no manual HTTP calls or JSON flattening required.
   `client.get_footprints(...)`, etc., mirroring the API 1:1.
 - **DataFrames by default**: every method returns a tidy `pandas.DataFrame`.
   Need the raw JSON instead? Use `WattnetRawClient`, see [Reference](python-client-reference.md#raw-json-access).
+- **Sync and async**: `WattnetClient` and `WattnetRawClient` for scripts and notebooks, `AsyncWattnetClient` and `AsyncWattnetRawClient` for asyncio applications, see [Async clients](#async-clients).
 - **Two ways to authenticate**: a static bearer token, or an email/password
   pair; the library fetches and caches tokens for you. See
   [Authentication](python-client-authentication.md).
@@ -65,6 +66,26 @@ Every time-series `DataFrame` has a `timestamp` column parsed as a tz-aware
 (UTC) `datetime64[ns, UTC]`, ready to plot or resample without any manual
 conversion. Omit `zone` (and other filter params) to get every zone back in
 a single call instead of querying one at a time.
+
+## Async clients
+
+For asyncio applications (for example the [wattnet Home Assistant integration](https://github.com/wattnet/wattnet-home-assistant)) use `AsyncWattnetClient`, the counterpart of `WattnetClient`: the same methods as coroutines returning a `pandas.DataFrame`. `AsyncWattnetRawClient` does the same for `WattnetRawClient` and returns raw JSON; it is built on [aiohttp](https://docs.aiohttp.org/) and does not import pandas.
+
+```python
+import asyncio
+
+from wattnet.client import AsyncWattnetClient
+
+
+async def main() -> None:
+    async with AsyncWattnetClient(token="<your-token>") as client:
+        df = await client.get_footprints(zone="ES", footprint_type="carbon")
+
+
+asyncio.run(main())
+```
+
+Independent requests can run concurrently with `asyncio.gather`. Authentication, retries, `Retry-After` handling and the token refresh on a `401` behave exactly as in the synchronous clients.
 
 See [Reference](python-client-reference.md) for the full list of available
 methods and their parameters, and [API Data Model](../api/api-data-model.md)

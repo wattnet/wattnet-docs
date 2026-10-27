@@ -6,7 +6,7 @@ tags:
 
 # Python Client Authentication
 
-`WattnetClient` (and `WattnetRawClient`) support two ways to authenticate,
+`WattnetClient` (and `WattnetRawClient`, `AsyncWattnetClient` and `AsyncWattnetRawClient`) support two ways to authenticate,
 passed as constructor arguments.
 
 ## Option 1: a static bearer token
@@ -49,6 +49,14 @@ register("you@example.com", "<your-password>")  # returns a confirmation message
 registration fails with an `AuthenticationError`. Registering an
 already-registered email is a harmless no-op.
 
+`async_register()` is the async counterpart of `register()`:
+
+```python
+from wattnet.client import async_register
+
+message = await async_register("you@example.com", "<your-password>")
+```
+
 ## Closing the client
 
 `WattnetClient`/`WattnetRawClient` support the context manager protocol,
@@ -57,6 +65,13 @@ closing the underlying HTTP session on exit:
 ```python
 with WattnetClient(token="<your-token>") as client:
     df = client.get_zones()
+```
+
+The async clients are used with `async with`, which closes the underlying `aiohttp` session on exit:
+
+```python
+async with AsyncWattnetClient(token="<your-token>") as client:
+    df = await client.get_zones()
 ```
 
 `repr(client)` shows the base URL and auth mode (e.g.

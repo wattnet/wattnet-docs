@@ -62,8 +62,8 @@ both.
 | `base_url` | `WATTNET_API_BASE_URL` | `https://api.wattnet.eu/v1` |
 | `token_url` | `WATTNET_TOKEN_URL` | `https://api.wattnet.eu/token-request` |
 
-Other constructor options: `session` (bring your own `requests.Session`),
-`timeout`, `retry_count`, `retry_delay`.
+Other constructor options: `session` (bring your own `requests.Session`, or an `aiohttp.ClientSession` for the async clients),
+`timeout`, `retry_count`, `retry_delay`. A session you supply is never closed by the client.
 
 Requests are retried up to `retry_count` times (default 3, waiting
 `retry_delay` seconds between attempts) on connection/timeout errors and on
@@ -71,6 +71,10 @@ Requests are retried up to `retry_count` times (default 3, waiting
 sends instead of the fixed delay, when present. A `401` always triggers one
 token refresh + retry, independent of `retry_count`. See
 [Authentication](python-client-authentication.md).
+
+## Async clients
+
+`AsyncWattnetClient` and `AsyncWattnetRawClient` expose exactly the same methods, parameters and constructor options as `WattnetClient` and `WattnetRawClient`, with every method a coroutine that must be awaited. `AsyncWattnetClient` returns a `pandas.DataFrame`; `AsyncWattnetRawClient` returns raw JSON and does not import pandas. Use them as async context managers (`async with`) so the `aiohttp` session is closed for you. See [Quickstart](python-client-quickstart.md#async-clients).
 
 ## Error handling
 
