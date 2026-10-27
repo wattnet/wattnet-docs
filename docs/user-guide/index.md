@@ -2,7 +2,7 @@
 
 This section explains how to use the Wattnet platform, from exploring the
 interactive dashboard to querying carbon and water footprint data
-programmatically through the API.
+programmatically through the API, or bring it into Home Assistant.
 
 - **[Dashboard Walkthrough](dashboard-walkthrough.md)**: how to use the
   interactive dashboard, with a video walkthrough.
@@ -23,3 +23,9 @@ programmatically through the API.
 - **[Python Client Notebook Example](python-client/python-client-notebook.md)**:
   a walkthrough of the runnable example notebook, with real API output for
   every method.
+- **[Home Assistant Integration](home-assistant/home-assistant-installation.md)**:
+  install the Wattnet integration in Home Assistant and set it up.
+- **[Home Assistant Dashboard and Entities](home-assistant/home-assistant-dashboard.md)**:
+  the sensors and the dashboard that the integration creates.
+- **[Home Assistant Reference](home-assistant/home-assistant-reference.md)**:
+  options, statistics, the Energy dashboard, actions and common questions.
