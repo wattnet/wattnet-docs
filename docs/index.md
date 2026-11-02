@@ -7,7 +7,7 @@ hide:
 
 <div class="home-hero" markdown>
 
-![Wattnet](assets/images/banner.png){ .home-hero__banner }
+![Wattnet](assets/images/banner.png){ .home-hero\_\_banner }
 
 # Wattnet Documentation
 
