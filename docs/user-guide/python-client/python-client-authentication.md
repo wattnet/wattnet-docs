@@ -6,67 +6,48 @@ tags:
 
 # Python Client Authentication
 
-`WattnetClient` (and `WattnetRawClient`) support two ways to authenticate,
-passed as constructor arguments.
+`WattnetClient` and `WattnetRawClient`, and their async counterparts `AsyncWattnetClient` and `AsyncWattnetRawClient`, authenticate in one of two ways, given as constructor arguments.
 
-## Option 1: a static bearer token
+## Option 1: a credential
 
-Pass a token obtained as described in [API Access](../api/api-access.md)
-directly:
+```python
+client = WattnetClient(client_id="<your-client-id>", client_secret="<your-client-secret>")
+```
+
+Create the credential in the [developer portal](https://developers.wattnet.eu), see [API Access](../api/api-access.md#1-create-a-credential). The client exchanges it for a token with the OAuth 2.0 `client_credentials` grant the first time it needs one, keeps the token in memory and renews it after 80 % of its lifetime (never later than a minute before it expires). If the API still rejects the token as expired (`401`), the client gets a new one and retries the request once.
+
+Read the secret from an environment variable or a secrets manager, not from your code. The token endpoint is discovered from the issuer (`https://auth.wattnet.eu/realms/wattnet`); set `issuer_url` or `token_url` only to override it, see [Configuration](python-client-reference.md#configuration).
+
+The token carries the [access level](../access/user-access-policy.md) of your account, so its limits apply to what the client asks. A query beyond them raises a `WattnetAPIError` whose `code` says which limit, see [Error handling](python-client-reference.md#error-handling).
+
+## Option 2: a static token
+
+Pass a token directly, for example one from the developer portal to try something quickly:
 
 ```python
 client = WattnetClient(token="<your-token>")
 ```
 
-The client uses this token as-is for every request. Since it cannot be
-refreshed by the library, you are responsible for replacing it once it
-expires (tokens are valid for 1 day).
-
-## Option 2: email and password
-
-```python
-client = WattnetClient(email="you@example.com", password="<your-password>")
-```
-
-Credentials are exchanged for a bearer token via the wattnet token-request
-service (`POST /get_token`), which the client calls transparently the first
-time it's needed. The token is cached in memory until shortly before its
-`expires_at` (as reported by the server, typically ~24h), then silently
-refreshed on the next call, including a one-time retry if the API itself
-rejects the cached token as expired (a `401` response).
-
-You must have already registered your email with the token-request service
-before it will be accepted; do that once with `register()`:
-
-```python
-from wattnet.client import register
-
-register("you@example.com", "<your-password>")  # returns a confirmation message
-```
-
-`email` must be pre-authorized server-side by the wattnet team (see
-[Requesting access](../api/api-access.md#requesting-access)), otherwise
-registration fails with an `AuthenticationError`. Registering an
-already-registered email is a harmless no-op.
+The client uses it as it is. It cannot refresh it, so you replace it when it expires (after 1 hour). `token` cannot be combined with `client_id` and `client_secret`.
 
 ## Closing the client
 
-`WattnetClient`/`WattnetRawClient` support the context manager protocol,
-closing the underlying HTTP session on exit:
+Both clients are context managers and close their HTTP session on exit:
 
 ```python
 with WattnetClient(token="<your-token>") as client:
     df = client.get_zones()
 ```
 
-`repr(client)` shows the base URL and auth mode (e.g.
-`WattnetClient(base_url='https://api.wattnet.eu/v1', auth=StaticTokenProvider)`),
-never any credentials.
+The async clients are used with `async with`, which closes their `aiohttp` session on exit:
+
+```python
+async with AsyncWattnetClient(token="<your-token>") as client:
+    df = await client.get_zones()
+```
+
+`repr(client)` shows the base URL and the authentication mode, for example `WattnetClient(base_url='https://api.wattnet.eu/v1', auth=StaticTokenProvider)`, never the credentials.
 
 ## Errors
 
-Authentication problems raise `wattnet.client.AuthenticationError`, for
-example an invalid token, an incorrect email/password pair, or registering
-an email that hasn't been granted access. See [Error
-handling](python-client-reference.md#error-handling) for the full exception
-hierarchy.
+A problem with authentication raises `wattnet.client.AuthenticationError`, for example an invalid token or a credential that the issuer rejects. The exceptions are in [Error handling](python-client-reference.md#error-handling).

@@ -7,71 +7,48 @@ hide:
 
 <div class="home-hero" markdown>
 
-![Wattnet](assets/images/banner.png){ .home-hero\_\_banner }
+# Wattnet <span class="home-hero__light">Documentation</span>
 
-# Wattnet Documentation
+Wattnet makes the environmental cost of electricity visible and actionable. It aggregates real-time, historical and forecasted data on the **carbon** and **water** impact of electricity consumption across Europe, and exposes it through an open REST API.
 
-Wattnet makes the environmental cost of electricity visible and actionable. It
-aggregates real-time, historical and forecasted data on the **carbon** and
-**water** impact of electricity consumption across Europe, and exposes it
-through an open REST API.
-
-[Get Started](user-guide/index.md){ .md-button .md-button--primary }
-[Explore the API](https://api.wattnet.eu/docs){ .md-button }
+[Get Started :material-arrow-right:](user-guide/index.md){ .md-button .md-button--primary }
+[Explore the API :material-arrow-top-right:](https://api.wattnet.eu/docs){ .md-button }
 
 </div>
-
-This site is the central documentation hub for the Wattnet platform. Whether
-you're integrating the API into your own application, researching the
-methodology behind the carbon and water footprint calculations, or exploring
-how the system is built, you'll find it here: from onboarding guides for
-new users to deployment references for engineers running the underlying
-`wattnet-api`, `wattnet-core`, and `wattnet-forecast` services.
 
 ## Explore the docs
 
 <div class="grid cards cards--linked cards--4col" markdown>
 
-- :material-book-open-variant: **User Guide**
+- :material-book-open-variant: **[User Guide](user-guide/index.md)**
 
-    How to use the platform and interpret carbon and water footprint data.
+    How to use the platform, the API and the Python client, and what each access level allows.
 
-    [Read more →](user-guide/index.md){ .card-read-more }
-
-- :material-flask-outline: **Methodology**
+- :material-flask-outline: **[Methodology](methodology/index.md)**
 
     How carbon and water footprints are calculated.
 
-    [Read more →](methodology/index.md){ .card-read-more }
-
-- :material-sitemap-outline: **Architecture**
+- :material-sitemap-outline: **[Architecture](architecture/index.md)**
 
     System overview, C4 diagrams, and design decisions.
 
-    [Read more →](architecture/index.md){ .card-read-more }
+- :material-api: **[Technical Reference](reference/index.md)**
 
-- :material-api: **Technical Reference**
-
-    Deployment and configuration of `wattnet-api`, `wattnet-core`, and
-    `wattnet-forecast`, including the API reference.
-
-    [Read more →](reference/index.md){ .card-read-more }
+    Deployment and configuration of `wattnet-api`, `wattnet-core`, and `wattnet-forecast`.
 
 </div>
 
-## Key Features
+## Key features
 
-<div class="grid cards cards--features" markdown>
+<div class="home-features" markdown>
 
 - :material-lightning-bolt: **Real-time data**
 
-    Live carbon intensity and generation mix updated across all supported
-    European zones.
+    Live carbon intensity and generation mix across all supported European zones.
 
 - :material-history: **Historical data**
 
-    Query time series going back years to support long-term research and
-    analysis.
+    Time series going back years, for long-term research and analysis.
 
 - :material-chart-timeline: **Forecasted data**
 
@@ -79,8 +56,7 @@ new users to deployment references for engineers running the underlying
 
 - :material-water: **Water footprint**
 
-    Beyond carbon: water consumption and withdrawal metrics for each
-    energy source.
+    Water consumption and withdrawal metrics for each energy source.
 
 - :material-map: **Zone coverage**
 
@@ -88,43 +64,33 @@ new users to deployment references for engineers running the underlying
 
 - :material-api: **Open API**
 
-    Fully documented REST API with versioning, interactive docs at
-    [api.wattnet.eu/docs](https://api.wattnet.eu/docs).
+    A documented, versioned REST API with [interactive docs](https://api.wattnet.eu/docs).
 
 </div>
 
-## Explore Wattnet
+## Wattnet on the web
 
-<div class="grid cards cards--linked cards--3col" markdown>
+<div class="grid cards cards--linked cards--4col cards--plain cards--compact" markdown>
 
-- :material-web: **wattnet.eu**
+- :material-web: **[wattnet.eu](https://wattnet.eu)**
 
-    The Wattnet project website.
+    The project website.
 
-    [Visit →](https://wattnet.eu){ .card-read-more }
+- :material-view-dashboard-outline: **[dashboard.wattnet.eu](https://dashboard.wattnet.eu)**
 
-- :material-view-dashboard-outline: **dashboard.wattnet.eu**
+    Explore the data on a map.
 
-    Interactive dashboard for exploring carbon and water footprint data.
+- :material-key-outline: **[developers.wattnet.eu](https://developers.wattnet.eu)**
 
-    [Visit →](https://dashboard.wattnet.eu){ .card-read-more }
+    Create your API credentials.
 
-- :material-api: **api.wattnet.eu/docs**
+- :material-api: **[api.wattnet.eu/docs](https://api.wattnet.eu/docs)**
 
-    Interactive OpenAPI reference for the public REST API.
-
-    [Visit →](https://api.wattnet.eu/docs){ .card-read-more }
+    The interactive API reference.
 
 </div>
 
-## Funding and Acknowledgments
-
-This work was developed within the [GreenDIGIT](https://greendigit-project.eu/) project, funded by the European Union's Horizon Europe research and innovation programme under grant agreement No. [101131207](https://cordis.europa.eu/project/id/101131207), and by the Swiss State Secretariat for Education, Research and Innovation (SERI).
-
-<img src="assets/images/greendigit-logo.png" alt="GreenDIGIT Logo" width="230" align="right"/>
-<img src="assets/images/eu-funded-logo.png" alt="EU Funded Logo" width="260" align="left"/>
-<img src="assets/images/flag-of-switzerland.svg" alt="Swiss State Secretariat for Education, Research and Innovation (SERI)" width="50" align="left"/>
-<br clear="all"/>
+<div class="home-about" markdown>
 
 ## About the Service
 
@@ -139,3 +105,19 @@ The name **WATTNET** and the **Wattnet Logo** are official registered trademarks
 ## Terms of Use
 
 Use of the Wattnet service, including the API and the dashboard, is subject to the [Wattnet terms](https://wattnet.eu/terms).
+
+<div class="home-about__funding" markdown>
+
+## Funding and Acknowledgments
+
+This work was developed within the [GreenDIGIT](https://greendigit-project.eu/) project, funded by the European Union's Horizon Europe research and innovation programme under grant agreement No. [101131207](https://cordis.europa.eu/project/id/101131207), and by the Swiss State Secretariat for Education, Research and Innovation (SERI).
+
+<div class="home-about__logos">
+<img src="assets/images/eu-funded-logo.png" alt="EU Funded Logo"/>
+<img src="assets/images/flag-of-switzerland.svg" alt="Swiss State Secretariat for Education, Research and Innovation (SERI)"/>
+<img src="assets/images/greendigit-logo.png" alt="GreenDIGIT Logo"/>
+</div>
+
+</div>
+
+</div>

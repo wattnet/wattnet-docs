@@ -16,16 +16,34 @@ nav = [
     { "Dashboard" = [
       { "Dashboard Walkthrough" = "user-guide/dashboard-walkthrough.md" },
     ] },
-    { "API" = [
+    { "Access" = [
+      { "User Access Policy" = "user-guide/access/user-access-policy.md" },
+      { "Account Management" = "user-guide/access/account-management.md" },
+    ] },
+    { "RESTful API" = [
       { "API Access" = "user-guide/api/api-access.md" },
       { "API Documentation" = "user-guide/api/api-documentation.md" },
       { "API Data Model" = "user-guide/api/api-data-model.md" },
+      { "Querying the API" = "user-guide/api/api-usage.md" },
+    ] },
+    { "Model Context Protocol" = [
+      { "MCP Interface" = "user-guide/mcp/mcp-interface.md" },
+      { "Connecting a Client" = "user-guide/mcp/mcp-connect.md" },
     ] },
     { "Python Client" = [
       { "Quickstart" = "user-guide/python-client/python-client-quickstart.md" },
       { "Authentication" = "user-guide/python-client/python-client-authentication.md" },
       { "Reference" = "user-guide/python-client/python-client-reference.md" },
       { "Notebook Example" = "user-guide/python-client/python-client-notebook.md" },
+    ] },
+    { "Home Assistant" = [
+      { "Installation" = "user-guide/home-assistant/home-assistant-installation.md" },
+      { "Dashboard and Entities" = "user-guide/home-assistant/home-assistant-dashboard.md" },
+      { "Reference" = "user-guide/home-assistant/home-assistant-reference.md" },
+    ] },
+    { "Help" = [
+      { "Troubleshooting" = "user-guide/help/troubleshooting.md" },
+      { "Deprecations" = "user-guide/help/deprecations.md" },
     ] },
   ] },
   { "Methodology" = [
