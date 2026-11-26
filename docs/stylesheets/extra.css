@@ -69,7 +69,10 @@
 	--md-primary-fg-color: #5487e7;
 	--md-primary-fg-color--light: #3a78e0;
 	--md-primary-fg-color--dark: #0f2868;
-	--md-default-bg-color: #020617;
+	--md-default-bg-color: #0f172a;
+	--md-code-bg-color: #0b1324;
+	--md-typeset-a-color: #7aa3eb;
+	--md-typeset-table-color: rgba(148, 163, 184, 0.22);
 
 	--md-accent-fg-color: #94ce24;
 	--md-accent-fg-color--transparent: rgba(148, 206, 36, 0.1);
@@ -101,10 +104,15 @@ body {
 	font-weight: 500;
 }
 
-.md-typeset p,
-.md-typeset li {
+.md-typeset p {
+	hyphens: manual;
 	text-align: justify;
 	text-justify: inter-word;
+}
+
+/* List items are short and start with a link: justified they open wide gaps after it */
+.md-typeset li {
+	text-align: left;
 }
 
 /* Narrow cards: justified text leaves rivers of white space */
@@ -138,7 +146,7 @@ body {
 }
 
 [data-md-color-scheme="slate"] .md-header {
-	background-color: rgba(5, 10, 26, 0.85);
+	background-color: rgba(11, 18, 36, 0.88);
 }
 
 .md-header__inner {
@@ -304,10 +312,9 @@ body {
 	box-shadow: none;
 }
 
-/* Card grids — divided-grid treatment mirroring wattnet.eu/about: no
-   per-item card border or rounding, just a thin line between items and a
-   cap on top of the whole grid. No left/right outer border. Numbered index
-   and gradient icon badge are kept as the one accent per item. */
+/* Card grids — divided grid like the developer portal: thin lines between
+   cells, a cap on top, numbered index. On hover the cell tints and the icon
+   badge fades to the accent green. */
 .md-typeset .grid.cards {
 	gap: 0;
 	border-top: 0.05rem solid var(--md-default-fg-color--lightest);
@@ -345,16 +352,13 @@ body {
 	background-color: rgba(58, 120, 224, 0.06);
 }
 
-.md-typeset .grid.cards.cards--features > ul > li:hover {
-	background-color: rgba(148, 206, 36, 0.06);
-}
-
 .md-typeset .grid.cards > ul > li > p:first-child {
 	margin-bottom: 0.6rem;
 }
 
 .md-typeset .grid.cards > ul > li > .twemoji,
 .md-typeset .grid.cards > ul > li > p:first-child > .twemoji {
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -364,28 +368,32 @@ body {
 	border-radius: 0.75rem;
 	background: linear-gradient(135deg, rgba(58, 120, 224, 0.16), rgba(58, 120, 224, 0.28));
 	color: #5487e7;
+	transition: color 0.3s ease;
 }
 
-.md-typeset .grid.cards.cards--features > ul > li > p:first-child > .twemoji {
-	background: linear-gradient(135deg, rgba(148, 206, 36, 0.18), rgba(148, 206, 36, 0.32));
-	color: #5f8c16;
+.md-typeset .grid.cards > ul > li > .twemoji::before,
+.md-typeset .grid.cards > ul > li > p:first-child > .twemoji::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	background: linear-gradient(135deg, #94ce24, #7bb320);
+	opacity: 0;
+	transition: opacity 0.3s ease;
 }
 
-[data-md-color-scheme="slate"]
-	.md-typeset
-	.grid.cards.cards--features
-	> ul
-	> li
-	> p:first-child
-	> .twemoji {
-	color: #94ce24;
-}
-
+.md-typeset .grid.cards > ul > li:hover > .twemoji,
 .md-typeset .grid.cards > ul > li:hover > p:first-child > .twemoji {
-	transform: scale(1.1);
+	color: #fff;
+}
+
+.md-typeset .grid.cards > ul > li:hover > .twemoji::before,
+.md-typeset .grid.cards > ul > li:hover > p:first-child > .twemoji::before {
+	opacity: 1;
 }
 
 .md-typeset .grid.cards > ul > li > p:first-child > .twemoji > svg {
+	position: relative;
 	width: 1.1rem;
 	height: 1.1rem;
 }
@@ -524,4 +532,508 @@ body {
 
 .md-header__title[data-same] .md-header__topic + .md-header__topic {
 	display: none;
+}
+
+/* Tables use the whole width of the text column, aligned with the paragraphs around them */
+.md-typeset__table {
+	display: block;
+	margin-left: 0.8rem;
+	margin-right: 0.8rem;
+	padding: 0;
+	overflow-x: auto;
+	width: auto;
+}
+
+.md-typeset table:not([class]) {
+	display: table;
+	width: 100%;
+}
+
+/* Dark theme: tables and cards sit a step above the page, like the cards of the developer portal */
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) {
+	background-color: rgba(148, 163, 184, 0.04);
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
+	background-color: rgba(148, 163, 184, 0.1);
+}
+
+/* Inline code in a table never breaks in two lines, such as `GET /generation` */
+.md-typeset table:not([class]) code {
+	white-space: nowrap;
+}
+
+/* Narrow screens: a long title shrinks with an ellipsis instead of pushing the search and the theme buttons off the screen */
+@media screen and (max-width: 76.1875em) {
+	.md-header__title {
+		min-width: 0;
+	}
+
+	.md-header__title .md-header__topic,
+	.md-header__title .md-ellipsis {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+}
+
+/* Screenshots: a thin edge and rounded corners, so a white page does not glare in the dark theme and a dark one does not blend into the light page */
+.md-typeset p > img[src*="images/developer-portal/"],
+.md-typeset p > img[src*="images/api/"],
+.md-typeset p > img[src*="images/account/"] {
+	border: 0.05rem solid var(--md-default-fg-color--lightest);
+	border-radius: 0.4rem;
+}
+
+/* Light theme: the head of a table is a step above its rows, as in the dark theme */
+[data-md-color-scheme="default"] .md-typeset table:not([class]) th {
+	background-color: rgba(11, 28, 56, 0.04);
+}
+
+/* Home: a plain, quiet landing page. A short hero on a soft glow, one row of cards, a light list of features, the links and the legal notes in small print. */
+.home-hero {
+	position: relative;
+	margin: 0 0 2.4rem;
+	padding: 2.2rem 0 0.4rem;
+}
+
+.home-hero::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	inset: -3rem -3rem 0;
+	background:
+		radial-gradient(ellipse 30% 60% at 32% 30%, rgba(58, 120, 224, 0.13), transparent),
+		radial-gradient(ellipse 24% 50% at 72% 25%, rgba(148, 206, 36, 0.1), transparent);
+	-webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent);
+	mask-image: linear-gradient(to bottom, #000 40%, transparent);
+	pointer-events: none;
+}
+
+.home-hero > h1 {
+	font-size: clamp(1.9rem, 1.4rem + 2vw, 2.6rem);
+	font-weight: 700;
+	letter-spacing: -0.01em;
+	margin-bottom: 0.6rem;
+}
+
+.home-hero > p {
+	max-width: 36rem;
+	font-size: 0.85rem;
+	text-align: left;
+}
+
+.home-hero .md-button {
+	margin-top: 0.6rem;
+}
+
+/* The whole card is the link: the title carries it, stretched over the card */
+.md-typeset .grid.cards.cards--linked > ul > li strong a {
+	text-decoration: none;
+}
+
+.md-typeset .grid.cards.cards--linked > ul > li strong a {
+	color: var(--md-default-fg-color);
+}
+
+.md-typeset .grid.cards.cards--linked > ul > li strong a::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+.md-typeset .grid.cards.cards--linked > ul > li strong a:hover {
+	color: var(--md-typeset-a-color);
+}
+
+/* Features: no boxes, three columns of an icon, a title and a line */
+.md-typeset .home-features ul {
+	display: grid;
+	gap: 1.6rem 2.4rem;
+	grid-template-columns: 1fr;
+	margin: 1.2rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+@media (min-width: 40em) {
+	.md-typeset .home-features ul {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (min-width: 60em) {
+	.md-typeset .home-features ul {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+.md-typeset .home-features ul > li {
+	margin: 0;
+}
+
+.md-typeset .home-features li p {
+	margin: 0;
+	text-align: left;
+}
+
+.md-typeset .home-features li p:first-child {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 0.25rem;
+}
+
+.md-typeset .home-features .twemoji {
+	color: var(--md-accent-fg-color);
+}
+
+.md-typeset .home-features li p:last-child {
+	color: var(--md-default-fg-color--light);
+	font-size: 0.75rem;
+}
+
+/* Legal notes: small print under a thin line, in one column, and the funding at the very end */
+.home-about {
+	margin-top: 3rem;
+	padding-top: 0.4rem;
+	border-top: 0.05rem solid var(--md-default-fg-color--lightest);
+	color: var(--md-default-fg-color--light);
+	font-size: 0.7rem;
+}
+
+.home-about h2 {
+	margin: 1.4rem 0 0.4rem;
+	font-size: 0.7rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--md-default-fg-color--light);
+}
+
+.home-about p,
+.home-about li {
+	font-size: 0.7rem;
+	line-height: 1.6;
+	text-align: left;
+}
+
+.home-about p {
+	hyphens: manual;
+	text-align: justify;
+}
+
+.home-about ul {
+	margin-left: 0;
+	padding-left: 1rem;
+}
+
+.home-about__funding {
+	margin-top: 0.4rem;
+	padding-top: 0.2rem;
+	border-top: 0.05rem solid var(--md-default-fg-color--lightest);
+}
+
+.home-about__logos {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1rem 1.2rem;
+	margin-top: 0.8rem;
+}
+
+.home-about__logos img:last-child {
+	margin-left: auto;
+}
+
+.home-about__logos img {
+	width: auto;
+	height: 1.9rem;
+	max-width: 100%;
+}
+
+/* Section index pages: the cards of a section without the numbers of the home, one, two or three columns */
+.md-typeset .grid.cards.cards--plain > ul > li::after {
+	content: none;
+}
+
+.md-typeset .grid.cards.cards--plain {
+	margin-bottom: 1.6rem;
+}
+
+.md-typeset .grid.cards.cards--linked.cards--plain > ul > li > p:last-child {
+	margin-top: 0;
+}
+
+@media (min-width: 60em) {
+	.md-typeset .grid.cards--1col {
+		grid-template-columns: 1fr;
+	}
+
+	.md-typeset .grid.cards--2col {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.md-typeset .grid.cards--2col > ul > li,
+	.md-typeset .grid.cards--2col > ol > li {
+		border-left: 0.05rem solid var(--md-default-fg-color--lightest);
+	}
+
+	.md-typeset .grid.cards--2col > ul > li:nth-child(2n + 1),
+	.md-typeset .grid.cards--2col > ol > li:nth-child(2n + 1) {
+		border-left: 0;
+	}
+}
+
+/* Sidebar: the same icon as the card of the page, in front of each page of the menu */
+.md-sidebar--primary .md-nav__link[href$="dashboard-walkthrough/"]::before,
+.md-sidebar--primary .md-nav__link[href$="access/user-access-policy/"]::before,
+.md-sidebar--primary .md-nav__link[href$="access/account-management/"]::before,
+.md-sidebar--primary .md-nav__link[href$="api/api-access/"]::before,
+.md-sidebar--primary .md-nav__link[href$="api/api-documentation/"]::before,
+.md-sidebar--primary .md-nav__link[href$="api/api-data-model/"]::before,
+.md-sidebar--primary .md-nav__link[href$="api/api-usage/"]::before,
+.md-sidebar--primary .md-nav__link[href$="mcp/mcp-interface/"]::before,
+.md-sidebar--primary .md-nav__link[href$="mcp/mcp-connect/"]::before,
+.md-sidebar--primary .md-nav__link[href$="python-client/python-client-quickstart/"]::before,
+.md-sidebar--primary .md-nav__link[href$="python-client/python-client-authentication/"]::before,
+.md-sidebar--primary .md-nav__link[href$="python-client/python-client-reference/"]::before,
+.md-sidebar--primary .md-nav__link[href$="python-client/python-client-notebook/"]::before,
+.md-sidebar--primary .md-nav__link[href$="methodology/datasources/"]::before,
+.md-sidebar--primary .md-nav__link[href$="methodology/zone-definition/"]::before,
+.md-sidebar--primary .md-nav__link[href$="methodology/impact-factors/"]::before,
+.md-sidebar--primary .md-nav__link[href$="methodology/flow-tracing/"]::before {
+	content: "";
+	flex: none;
+	width: 0.9rem;
+	height: 0.9rem;
+	background-color: currentColor;
+	-webkit-mask: var(--nav-icon) center / contain no-repeat;
+	mask: var(--nav-icon) center / contain no-repeat;
+	opacity: 0.8;
+}
+
+.md-sidebar--primary .md-nav__link[href$="dashboard-walkthrough/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE5IDV2MmgtNFY1ek05IDV2Nkg1VjV6bTEwIDh2NmgtNHYtNnpNOSAxN3YySDV2LTJ6TTIxIDNoLTh2Nmg4ek0xMSAzSDN2MTBoOHptMTAgOGgtOHYxMGg4em0tMTAgNEgzdjZoOHoiLz48L3N2Zz4=");
+}
+
+.md-sidebar--primary .md-nav__link[href$="access/user-access-policy/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDEgMyA1djZjMCA1LjU1IDMuODQgMTAuNzQgOSAxMiA1LjE2LTEuMjYgOS02LjQ1IDktMTJWNXptMCAyLjE4IDcgMy4xMnY0LjkyYzAgMS43LS41IDMuNDMtMS4zNSA0Ljk1QzE2IDE0Ljk0IDEzLjI2IDE0LjUgMTIgMTQuNXMtNCAuNDQtNS42NSAxLjY3QzUuNSAxNC42NSA1IDEyLjkyIDUgMTEuMjJWNi4zek0xMiA2YTMuNSAzLjUgMCAwIDAtMy41IDMuNUEzLjUgMy41IDAgMCAwIDEyIDEzYTMuNSAzLjUgMCAwIDAgMy41LTMuNUEzLjUgMy41IDAgMCAwIDEyIDZtMCAyYTEuNSAxLjUgMCAwIDEgMS41IDEuNUExLjUgMS41IDAgMCAxIDEyIDExYTEuNSAxLjUgMCAwIDEtMS41LTEuNUExLjUgMS41IDAgMCAxIDEyIDhtMCA4LjVjMS41NyAwIDMuNjQuNjEgNC41MyAxLjM0QzE1LjI5IDE5LjM4IDEzLjcgMjAuNTUgMTIgMjFjLTEuNy0uNDUtMy4yOS0xLjYyLTQuNTMtMy4xNi45LS43MyAyLjk2LTEuMzQgNC41My0xLjM0Ii8+PC9zdmc+");
+}
+
+.md-sidebar--primary .md-nav__link[href$="access/account-management/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEwIDRhNCA0IDAgMCAwLTQgNCA0IDQgMCAwIDAgNCA0IDQgNCAwIDAgMCA0LTQgNCA0IDAgMCAwLTQtNG0wIDJhMiAyIDAgMCAxIDIgMiAyIDIgMCAwIDEtMiAyIDIgMiAwIDAgMS0yLTIgMiAyIDAgMCAxIDItMm03IDZxLS4yNCAwLS4yNC4yNGwtLjI2IDEuMjZjLS4yMi4xOC0uNTQuMzQtLjc4LjVsLTEuMjgtLjVjLS4wOCAwLS4yNCAwLS4zMi4xbC0uOTYgMS43NmMtLjA4LjA4LS4wOC4yNC4wOC4zMmwxLjA0LjgydjFsLTEuMDQuODJjLS4wOC4wOC0uMTYuMjQtLjA4LjMybC45NiAxLjc2Yy4wOC4xLjI0LjEuMzIuMWwxLjI4LS41Yy4yNC4xNi41Ni4zMi43OC41bC4yNiAxLjI2cTAgLjI0LjI0LjI0aDJjLjA4IDAgLjI0LS4wOC4yNC0uMjRsLjE2LTEuMjZjLjMyLS4xOC42NC0uMzQuODgtLjVsMS4yMi41Yy4xNCAwIC4zIDAgLjMtLjFsMS4wNC0xLjc2Yy4wOC0uMDggMC0uMjQtLjA4LS4zMmwtMS4wNC0uODJ2LTFsMS4wNC0uODJjLjA4LS4wOC4xNi0uMjQuMDgtLjMyTDIxLjggMTMuNmMwLS4xLS4xNi0uMS0uMy0uMWwtMS4yMi41Yy0uMjQtLjE2LS41Ni0uMzItLjg4LS41bC0uMTYtMS4yNmMwLS4xNi0uMTYtLjI0LS4yNC0uMjR6bS03IDFjLTIuNjcgMC04IDEuMzMtOCA0djNoOS42N2MtLjI4LS41OS0uNDgtMS4yMy0uNTgtMS45SDMuOVYxN2MwLS42NCAzLjEzLTIuMSA2LjEtMi4xLjQzIDAgLjg3LjA0IDEuMy4xLjItLjY0LjQ3LTEuMjQuODItMS43OS0uNzgtLjEzLTEuNTItLjIxLTIuMTItLjIxbTguMDQgMi41Yy44IDAgMS40Ni42NiAxLjQ2IDEuNTQgMCAuOC0uNjYgMS40Ni0xLjQ2IDEuNDYtLjg4IDAtMS41NC0uNjYtMS41NC0xLjQ2IDAtLjg4LjY2LTEuNTQgMS41NC0xLjU0Ii8+PC9zdmc+");
+}
+
+.md-sidebar--primary .md-nav__link[href$="api/api-access/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIxIDE4aC02di0zaC0xLjdjLTEuMSAyLjQtMy42IDQtNi4zIDQtMy45IDAtNy0zLjEtNy03czMuMS03IDctN2MyLjcgMCA1LjIgMS42IDYuMyA0SDI0djZoLTN6bS00LTJoMnYtM2gzdi0ySDExLjlsLS4yLS43QzExIDguMyA5LjEgNyA3IDdjLTIuOCAwLTUgMi4yLTUgNXMyLjIgNSA1IDVjMi4xIDAgNC0xLjMgNC43LTMuM2wuMi0uN0gxN3pNNyAxNWMtMS43IDAtMy0xLjMtMy0zczEuMy0zIDMtMyAzIDEuMyAzIDMtMS4zIDMtMyAzbTAtNGMtLjYgMC0xIC40LTEgMXMuNCAxIDEgMSAxLS40IDEtMS0uNC0xLTEtMSIvPjwvc3ZnPg==");
+}
+
+.md-sidebar--primary .md-nav__link[href$="api/api-documentation/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTYgMmEyIDIgMCAwIDAtMiAydjE2YTIgMiAwIDAgMCAyIDJoMTJhMiAyIDAgMCAwIDItMlY4bC02LTZ6bTAgMmg3djVoNXYxMUg2em0yIDh2Mmg4di0yem0wIDR2Mmg1di0yeiIvPjwvc3ZnPg==");
+}
+
+.md-sidebar--primary .md-nav__link[href$="api/api-data-model/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDNDNy41OCAzIDQgNC43OSA0IDd2MTBjMCAyLjIxIDMuNTkgNCA4IDRzOC0xLjc5IDgtNFY3YzAtMi4yMS0zLjU4LTQtOC00bTYgMTRjMCAuNS0yLjEzIDItNiAycy02LTEuNS02LTJ2LTIuMjNjMS42MS43OCAzLjcyIDEuMjMgNiAxLjIzczQuMzktLjQ1IDYtMS4yM3ptMC00LjU1Yy0xLjMuOTUtMy41OCAxLjU1LTYgMS41NXMtNC43LS42LTYtMS41NVY5LjY0YzEuNDcuODMgMy42MSAxLjM2IDYgMS4zNnM0LjUzLS41MyA2LTEuMzZ6TTEyIDlDOC4xMyA5IDYgNy41IDYgN3MyLjEzLTIgNi0yIDYgMS41IDYgMi0yLjEzIDItNiAyIi8+PC9zdmc+");
+}
+
+.md-sidebar--primary .md-nav__link[href$="api/api-usage/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0ibTE5LjMxIDE4LjkgMy4wOCAzLjFMMjEgMjMuMzlsLTMuMTItMy4wN2MtLjY5LjQzLTEuNTEuNjgtMi4zOC42OC0yLjUgMC00LjUtMi00LjUtNC41czItNC41IDQuNS00LjUgNC41IDIgNC41IDQuNWMwIC44OC0uMjUgMS43MS0uNjkgMi40bS0zLjgxLjFhMi41IDIuNSAwIDAgMCAwLTUgMi41IDIuNSAwIDAgMCAwIDVNMjEgNHYySDNWNHpNMyAxNnYtMmg2djJ6bTAtNVY5aDE4djJoLTIuMDNjLTEuMDEtLjYzLTIuMi0xLTMuNDctMXMtMi40Ni4zNy0zLjQ3IDF6Ii8+PC9zdmc+");
+}
+
+.md-sidebar--primary .md-nav__link[href$="mcp/mcp-interface/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE3LjUgMTUuNUMxNy41IDE2LjYxIDE2LjYxIDE3LjUgMTUuNSAxNy41UzEzLjUgMTYuNjEgMTMuNSAxNS41IDE0LjM5IDEzLjUgMTUuNSAxMy41IDE3LjUgMTQuMzkgMTcuNSAxNS41TTguNSAxMy41QzcuMzkgMTMuNSA2LjUgMTQuMzkgNi41IDE1LjVTNy4zOSAxNy41IDguNSAxNy41IDEwLjUgMTYuNjEgMTAuNSAxNS41IDkuNjEgMTMuNSA4LjUgMTMuNU0yMyAxNVYxOEMyMyAxOC41NSAyMi41NSAxOSAyMiAxOUgyMVYyMEMyMSAyMS4xMSAyMC4xMSAyMiAxOSAyMkg1QzMuOSAyMiAzIDIxLjExIDMgMjBWMTlIMkMxLjQ1IDE5IDEgMTguNTUgMSAxOFYxNUMxIDE0LjQ1IDEuNDUgMTQgMiAxNEgzQzMgMTAuMTMgNi4xMyA3IDEwIDdIMTFWNS43M0MxMC40IDUuMzkgMTAgNC43NCAxMCA0QzEwIDIuOSAxMC45IDIgMTIgMlMxNCAyLjkgMTQgNEMxNCA0Ljc0IDEzLjYgNS4zOSAxMyA1LjczVjdIMTRDMTcuODcgNyAyMSAxMC4xMyAyMSAxNEgyMkMyMi41NSAxNCAyMyAxNC40NSAyMyAxNU0yMSAxNkgxOVYxNEMxOSAxMS4yNCAxNi43NiA5IDE0IDlIMTBDNy4yNCA5IDUgMTEuMjQgNSAxNFYxNkgzVjE3SDVWMjBIMTlWMTdIMjFWMTZaIi8+PC9zdmc+");
+}
+
+.md-sidebar--primary .md-nav__link[href$="mcp/mcp-connect/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIxLjQgNy41Yy44LjguOCAyLjEgMCAyLjhsLTIuOCAyLjgtNy44LTcuOCAyLjgtMi44Yy44LS44IDIuMS0uOCAyLjggMGwxLjggMS44IDMtMyAxLjQgMS40LTMgM3ptLTUuOCA1LjgtMS40LTEuNC0yLjggMi44LTIuMS0yLjEgMi44LTIuOC0xLjQtMS40LTIuOCAyLjgtMS41LTEuNC0yLjggMi44Yy0uOC44LS44IDIuMSAwIDIuOGwxLjggMS44LTQgNCAxLjQgMS40IDQtNCAxLjggMS44Yy44LjggMi4xLjggMi44IDBsMi44LTIuOC0xLjQtMS40eiIvPjwvc3ZnPg==");
+}
+
+.md-sidebar--primary .md-nav__link[href$="python-client/python-client-quickstart/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE5LjE0IDcuNUEyLjg2IDIuODYgMCAwIDEgMjIgMTAuMzZ2My43OEEyLjg2IDIuODYgMCAwIDEgMTkuMTQgMTdIMTJjMCAuMzkuMzIuOTYuNzEuOTZIMTd2MS42OGEyLjg2IDIuODYgMCAwIDEtMi44NiAyLjg2SDkuODZBMi44NiAyLjg2IDAgMCAxIDcgMTkuNjR2LTMuNzVhMi44NSAyLjg1IDAgMCAxIDIuODYtMi44NWg1LjI1YTIuODUgMi44NSAwIDAgMCAyLjg1LTIuODZWNy41em0tNC4yOCAxMS43OWMtLjQgMC0uNzIuMy0uNzIuODlzLjMyLjcxLjcyLjcxYS43MS43MSAwIDAgMCAuNzEtLjcxYzAtLjU5LS4zMi0uODktLjcxLS44OW0tMTAtMS43OUEyLjg2IDIuODYgMCAwIDEgMiAxNC42NHYtMy43OEEyLjg2IDIuODYgMCAwIDEgNC44NiA4SDEyYzAtLjM5LS4zMi0uOTYtLjcxLS45Nkg3VjUuMzZBMi44NiAyLjg2IDAgMCAxIDkuODYgMi41aDQuMjhBMi44NiAyLjg2IDAgMCAxIDE3IDUuMzZ2My43NWEyLjg1IDIuODUgMCAwIDEtMi44NiAyLjg1SDguODlhMi44NSAyLjg1IDAgMCAwLTIuODUgMi44NnYyLjY4ek05LjE0IDUuNzFjLjQgMCAuNzItLjMuNzItLjg5cy0uMzItLjcxLS43Mi0uNzFjLS4zOSAwLS43MS4xMi0uNzEuNzFzLjMyLjg5LjcxLjg5Ii8+PC9zdmc+");
+}
+
+.md-sidebar--primary .md-nav__link[href$="python-client/python-client-authentication/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDE3YTIgMiAwIDAgMS0yLTJjMC0xLjExLjg5LTIgMi0yYTIgMiAwIDAgMSAyIDIgMiAyIDAgMCAxLTIgMm02IDNWMTBINnYxMHptMC0xMmEyIDIgMCAwIDEgMiAydjEwYTIgMiAwIDAgMS0yIDJINmEyIDIgMCAwIDEtMi0yVjEwYzAtMS4xMS44OS0yIDItMmgxVjZhNSA1IDAgMCAxIDUtNSA1IDUgMCAwIDEgNSA1djJ6bS02LTVhMyAzIDAgMCAwLTMgM3YyaDZWNmEzIDMgMCAwIDAtMy0zIi8+PC9zdmc+");
+}
+
+.md-sidebar--primary .md-nav__link[href$="python-client/python-client-reference/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0ibTE5IDEtNSA1djExbDUtNC41em0yIDR2MTMuNWMtMS4xLS4zNS0yLjMtLjUtMy41LS41LTEuNyAwLTQuMTUuNjUtNS41IDEuNVY2Yy0xLjQ1LTEuMS0zLjU1LTEuNS01LjUtMS41UzIuNDUgNC45IDEgNnYxNC42NWMwIC4yNS4yNS41LjUuNS4xIDAgLjE1LS4wNS4yNS0uMDVDMy4xIDIwLjQ1IDUuMDUgMjAgNi41IDIwYzEuOTUgMCA0LjA1LjQgNS41IDEuNSAxLjM1LS44NSAzLjgtMS41IDUuNS0xLjUgMS42NSAwIDMuMzUuMyA0Ljc1IDEuMDUuMS4wNS4xNS4wNS4yNS4wNS4yNSAwIC41LS4yNS41LS41VjZjLS42LS40NS0xLjI1LS43NS0yLTFNMTAgMTguNDFDOC43NSAxOC4wOSA3LjUgMTggNi41IDE4Yy0xLjA2IDAtMi4zMi4xOS0zLjUuNVY3LjEzYy45MS0uNCAyLjE0LS42MyAzLjUtLjYzczIuNTkuMjMgMy41LjYzeiIvPjwvc3ZnPg==");
+}
+
+.md-sidebar--primary .md-nav__link[href$="python-client/python-client-notebook/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE3IDR2NmwtMi0yLTIgMlY0SDl2MTZoMTBWNHpNMyA3VjVoMlY0YTIgMiAwIDAgMSAyLTJoMTJjMS4wNSAwIDIgLjk1IDIgMnYxNmMwIDEuMDUtLjk1IDItMiAySDdjLTEuMDUgMC0yLS45NS0yLTJ2LTFIM3YtMmgydi00SDN2LTJoMlY3em0yLTJ2MmgyVjV6bTAgMTRoMnYtMkg1em0wLTZoMnYtMkg1eiIvPjwvc3ZnPg==");
+}
+
+.md-sidebar--primary .md-nav__link[href$="methodology/datasources/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0ibTguODQgMTItNC45MiA0LjkyTDIuNSAxNS41IDUgMTNIMHYtMmg1TDIuNSA4LjVsMS40Mi0xLjQyek0xMiAzQzguNTkgMyA1LjY4IDQuMDcgNC41MyA1LjU3TDUgNmwxLjAzIDEuMDdDNiA3LjA1IDYgNyA2IDdjMC0uNSAyLjEzLTIgNi0yczYgMS41IDYgMi0yLjEzIDItNiAyYy0yLjYyIDAtNC40Mi0uNjktNS4zMi0xLjI4bDMuMTIgMy4xMmMuNy4xIDEuNDQuMTYgMi4yLjE2IDIuMzkgMCA0LjUzLS41MyA2LTEuMzZ2Mi44MWMtMS4zLjk1LTMuNTggMS41NS02IDEuNTUtLjk2IDAtMS45LS4xLTIuNzYtLjI3bC0xLjY1IDEuNjRjMS4zMi40IDIuODIuNjMgNC40MS42MyAyLjI4IDAgNC4zOS0uNDUgNi0xLjIzVjE3YzAgLjUtMi4xMyAyLTYgMnMtNi0xLjUtNi0ydi0uMDRMNSAxOGwtLjQ2LjQzQzUuNjkgMTkuOTMgOC42IDIxIDEyIDIxYzQuNDEgMCA4LTEuNzkgOC00VjdjMC0yLjIxLTMuNTgtNC04LTQiLz48L3N2Zz4=");
+}
+
+.md-sidebar--primary .md-nav__link[href$="methodology/zone-definition/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0ibTIwLjUgMy0uMTYuMDNMMTUgNS4xIDkgMyAzLjM2IDQuOWMtLjIxLjA3LS4zNi4yNS0uMzYuNDhWMjAuNWEuNS41IDAgMCAwIC41LjVsLjE2LS4wM0w5IDE4LjlsNiAyLjEgNS42NC0xLjljLjIxLS4wNy4zNi0uMjUuMzYtLjQ4VjMuNWEuNS41IDAgMCAwLS41LS41TTEwIDUuNDdsNCAxLjR2MTEuNjZsLTQtMS40em0tNSAuOTkgMy0xLjAxdjExLjdsLTMgMS4xNnptMTQgMTEuMDgtMyAxLjAxVjYuODZsMy0xLjE2eiIvPjwvc3ZnPg==");
+}
+
+.md-sidebar--primary .md-nav__link[href$="methodology/impact-factors/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE3IDhDOCAxMCA1LjkgMTYuMTcgMy44MiAyMS4zNGwxLjg5LjY2Ljk1LTIuM2MuNDguMTcuOTguMyAxLjM0LjNDMTkgMjAgMjIgMyAyMiAzYy0xIDItOCAyLjI1LTEzIDMuMjVTMiAxMS41IDIgMTMuNXMxLjc1IDMuNzUgMS43NSAzLjc1QzcgOCAxNyA4IDE3IDgiLz48L3N2Zz4=");
+}
+
+.md-sidebar--primary .md-nav__link[href$="methodology/flow-tracing/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE4IDExaC0zLjE4QzE0LjQgOS44NCAxMy4zIDkgMTIgOXMtMi40Ljg0LTIuODIgMkg2Yy0uMzMgMC0yLS4xLTItMlY4YzAtMS44MyAxLjU0LTIgMi0yaDEwLjE4QzE2LjYgNy4xNiAxNy43IDggMTkgOGEzIDMgMCAwIDAgMy0zIDMgMyAwIDAgMC0zLTNjLTEuMyAwLTIuNC44NC0yLjgyIDJINkM0LjM5IDQgMiA1LjA2IDIgOHYxYzAgMi45NCAyLjM5IDQgNCA0aDMuMThjLjQyIDEuMTYgMS41MiAyIDIuODIgMnMyLjQtLjg0IDIuODItMkgxOGMuMzMgMCAyIC4xIDIgMnYxYzAgMS44My0xLjU0IDItMiAySDcuODJDNy40IDE2Ljg0IDYuMyAxNiA1IDE2YTMgMyAwIDAgMC0zIDMgMyAzIDAgMCAwIDMgM2MxLjMgMCAyLjQtLjg0IDIuODItMkgxOGMxLjYxIDAgNC0xLjA3IDQtNHYtMWMwLTIuOTMtMi4zOS00LTQtNG0xLTdhMSAxIDAgMCAxIDEgMSAxIDEgMCAwIDEtMSAxIDEgMSAwIDAgMS0xLTEgMSAxIDAgMCAxIDEtMU01IDIwYTEgMSAwIDAgMS0xLTEgMSAxIDAgMCAxIDEtMSAxIDEgMCAwIDEgMSAxIDEgMSAwIDAgMS0xIDEiLz48L3N2Zz4=");
+}
+
+/* Compact cards: an icon next to the title, one line below, little height */
+.md-typeset .grid.cards.cards--compact > ul > li {
+	padding: 0.9rem 1rem;
+}
+
+.md-typeset .grid.cards.cards--compact > ul > li > p:first-child {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	margin: 0 0 0.3rem;
+}
+
+.md-typeset .grid.cards.cards--compact > ul > li > p:first-child > .twemoji {
+	margin: 0;
+}
+
+.md-typeset .grid.cards.cards--compact > ul > li > p:last-child {
+	margin: 0;
+	color: var(--md-default-fg-color--light);
+	font-size: 0.7rem;
+}
+
+/* Home hero, polished: a two-tone title, a quieter paragraph, buttons with an arrow and a soft entrance */
+.home-hero {
+	padding-top: 3rem;
+	margin-bottom: 3rem;
+}
+
+.home-hero > h1 {
+	font-size: clamp(2.2rem, 1.6rem + 2.4vw, 3.1rem);
+	line-height: 1.1;
+	margin-bottom: 1rem;
+}
+
+.home-hero__light {
+	-webkit-text-fill-color: var(--md-default-fg-color--light);
+	color: var(--md-default-fg-color--light);
+	font-weight: 400;
+}
+
+.home-hero > p:not(:last-child) {
+	max-width: 34rem;
+	margin-bottom: 1.6rem;
+	color: var(--md-default-fg-color--light);
+	font-size: 0.9rem;
+	line-height: 1.75;
+}
+
+.home-hero > p:not(:last-child) strong {
+	color: var(--md-default-fg-color);
+}
+
+.home-hero .md-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	margin: 0 0.6rem 0.6rem 0;
+}
+
+.home-hero .md-button .twemoji {
+	display: inline-flex;
+	margin: 0;
+}
+
+.home-hero .md-button .twemoji svg {
+	width: 1em;
+	height: 1em;
+	transition: transform 0.25s ease;
+}
+
+.home-hero .md-button:hover .twemoji svg {
+	transform: translateX(0.15rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.home-hero > * {
+		animation: home-rise 0.6s ease both;
+	}
+
+	.home-hero > h1 {
+		animation-delay: 0.05s;
+	}
+
+	.home-hero > p:not(:last-child) {
+		animation-delay: 0.15s;
+	}
+
+	.home-hero > p:last-child {
+		animation-delay: 0.25s;
+	}
+
+	@keyframes home-rise {
+		from {
+			opacity: 0;
+			transform: translateY(0.5rem);
+		}
+
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+}
+
+/* A table of a name and its description: on a wide screen the first column has room for the name */
+@media (min-width: 40em) {
+	.md-typeset .table-key table:not([class]) th:first-child,
+	.md-typeset .table-key table:not([class]) td:first-child {
+		width: 1%;
+		white-space: nowrap;
+	}
+}
+
+/* Sidebar icons of the Help pages */
+.md-sidebar--primary .md-nav__link[href$="help/troubleshooting/"]::before,
+.md-sidebar--primary .md-nav__link[href$="help/deprecations/"]::before {
+	content: "";
+	flex: none;
+	width: 0.9rem;
+	height: 0.9rem;
+	background-color: currentColor;
+	-webkit-mask: var(--nav-icon) center / contain no-repeat;
+	mask: var(--nav-icon) center / contain no-repeat;
+	opacity: 0.8;
+}
+
+.md-sidebar--primary .md-nav__link[href$="help/troubleshooting/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE5Ljc5IDE1LjQxYy45NS0yLjE3Ljk1LTQuNjYgMC02LjgybC0yLjc0IDEuMjRjLjYgMS4zOC42IDIuOTUuMDEgNC4zNHptLTQuMzctMTEuMmE4LjU0IDguNTQgMCAwIDAtNi44MyAwbDEuMjQgMi43M2MxLjM5LS41OSAyLjk2LS41OSA0LjM1LjAxek00LjIxIDguNThhOC41NiA4LjU2IDAgMCAwIDAgNi44NGwyLjc0LTEuMjVjLS42LTEuMzgtLjYtMi45NiAwLTQuMzV6bTQuMzggMTEuMjFhOC41IDguNSAwIDAgMCA2LjgzLS4wMWwtMS4yNC0yLjczYTUuNSA1LjUgMCAwIDEtNC4zNC4wMXpNMTIgMmExMCAxMCAwIDAgMSAxMCAxMCAxMCAxMCAwIDAgMS0xMCAxMEExMCAxMCAwIDAgMSAyIDEyIDEwIDEwIDAgMCAxIDEyIDJtMCA2YTQgNCAwIDAgMC00IDQgNCA0IDAgMCAwIDQgNCA0IDQgMCAwIDAgNC00IDQgNCAwIDAgMC00LTQiLz48L3N2Zz4=");
+}
+
+.md-sidebar--primary .md-nav__link[href$="help/deprecations/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE1IDEzaDEuNXYyLjgybDIuNDQgMS40MS0uNzUgMS4zTDE1IDE2LjY5em00LTVINXYxMWg0LjY3Yy0uNDMtLjkxLS42Ny0xLjkzLS42Ny0zYTcgNyAwIDAgMSA3LTdjMS4wNyAwIDIuMDkuMjQgMyAuNjd6TTUgMjFhMiAyIDAgMCAxLTItMlY1YzAtMS4xMS44OS0yIDItMmgxVjFoMnYyaDhWMWgydjJoMWEyIDIgMCAwIDEgMiAydjYuMWMxLjI0IDEuMjYgMiAyLjk5IDIgNC45YTcgNyAwIDAgMS03IDdjLTEuOTEgMC0zLjY0LS43Ni00LjktMnptMTEtOS44NUE0Ljg1IDQuODUgMCAwIDAgMTEuMTUgMTZjMCAyLjY4IDIuMTcgNC44NSA0Ljg1IDQuODVBNC44NSA0Ljg1IDAgMCAwIDIwLjg1IDE2YzAtMi42OC0yLjE3LTQuODUtNC44NS00Ljg1Ii8+PC9zdmc+");
+}
+
+/* Troubleshooting tables: a little more room for the middle column, the explanation */
+@media (min-width: 40em) {
+	.md-typeset .table-help table:not([class]) th:nth-child(1),
+	.md-typeset .table-help table:not([class]) td:nth-child(1) {
+		width: 30%;
+	}
+
+	.md-typeset .table-help table:not([class]) th:nth-child(2),
+	.md-typeset .table-help table:not([class]) td:nth-child(2) {
+		width: 47%;
+	}
+
+	.md-typeset .table-help table:not([class]) th:nth-child(3),
+	.md-typeset .table-help table:not([class]) td:nth-child(3) {
+		width: 23%;
+	}
+}
+
+/* Sidebar: keep the scrollbar apart from the frame of the active item */
+.md-sidebar--primary .md-sidebar__scrollwrap {
+	padding-right: 0.4rem;
 }

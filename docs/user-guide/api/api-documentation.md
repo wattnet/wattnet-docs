@@ -6,34 +6,16 @@ tags:
 
 # API Documentation
 
-Full, interactive documentation for all available endpoints is published at
-[api.wattnet.eu/docs](https://api.wattnet.eu/docs), including a Swagger UI
-where you can browse endpoints and try out requests directly from the
-browser.
+The interactive documentation is at [api.wattnet.eu/docs](https://api.wattnet.eu/docs). It is a Swagger UI where you browse every endpoint and query parameter, such as the zones and the metrics (carbon, water, environmental score), and try requests from the browser.
 
-This is also where you'll find the full catalog of available endpoints and
-query parameters, such as which zones and metrics (carbon, water, green
-score) can be requested, beyond the example shown in
-[API Access](api-access.md#3-query-the-api). For an explanation of the data
-quality flags returned in the results, see the [API Data
-Model](api-data-model.md).
+For what the answers contain see the [API Data Model](api-data-model.md), and for the resolution, errors, caching and compression, [Querying the API](api-usage.md).
+
+## Trying a request
+
+Press **Authorize** and paste a token, see [API Access](api-access.md#trying-the-api-by-hand). Then open an endpoint, press **Try it out**, fill in the parameters and press **Execute**. The page shows the `curl` command and the status, body and headers of the answer, such as `cache-control`.
+
+![The answer of an endpoint in the interactive documentation](../../assets/images/api/swagger-response.png)
 
 ## API versioning
 
-The API is versioned. The current version is `v1`; the base URL is
-[https://api.wattnet.eu/v1/](https://api.wattnet.eu/v1/).
-
-## Signing in
-
-The interactive docs support sign-in via OAuth, using either a Google or a
-GitHub social account.
-
-!!! note "Authentication note"
-
-    The credentials used for the token service are currently separate from
-    those used to access the API documentation interface. At the moment,
-    access to the API docs only works via social login (GitHub or Google);
-    the email and password you use to [obtain a Bearer
-    token](api-access.md#2-obtain-a-token) will not work to sign in here.
-    This is something we will progressively unify as we onboard more
-    external users.
+The current version is `v1`, at [https://api.wattnet.eu/v1/](https://api.wattnet.eu/v1/). Changes inside `v1` only add: a new field, parameter or endpoint never removes or changes what an existing client reads. A field that is going to be removed is first marked as deprecated in the interactive documentation, with the date it goes. Today that is `values`, see [Series: `points` and `values`](api-data-model.md#series-points-and-values).
