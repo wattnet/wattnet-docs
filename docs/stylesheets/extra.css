@@ -799,6 +799,9 @@ body {
 .md-sidebar--primary .md-nav__link[href$="python-client/python-client-authentication/"]::before,
 .md-sidebar--primary .md-nav__link[href$="python-client/python-client-reference/"]::before,
 .md-sidebar--primary .md-nav__link[href$="python-client/python-client-notebook/"]::before,
+.md-sidebar--primary .md-nav__link[href$="home-assistant/home-assistant-installation/"]::before,
+.md-sidebar--primary .md-nav__link[href$="home-assistant/home-assistant-dashboard/"]::before,
+.md-sidebar--primary .md-nav__link[href$="home-assistant/home-assistant-reference/"]::before,
 .md-sidebar--primary .md-nav__link[href$="methodology/datasources/"]::before,
 .md-sidebar--primary .md-nav__link[href$="methodology/zone-definition/"]::before,
 .md-sidebar--primary .md-nav__link[href$="methodology/impact-factors/"]::before,
@@ -863,6 +866,18 @@ body {
 
 .md-sidebar--primary .md-nav__link[href$="python-client/python-client-notebook/"]::before {
 	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTE3IDR2NmwtMi0yLTIgMlY0SDl2MTZoMTBWNHpNMyA3VjVoMlY0YTIgMiAwIDAgMSAyLTJoMTJjMS4wNSAwIDIgLjk1IDIgMnYxNmMwIDEuMDUtLjk1IDItMiAySDdjLTEuMDUgMC0yLS45NS0yLTJ2LTFIM3YtMmgydi00SDN2LTJoMlY3em0yLTJ2MmgyVjV6bTAgMTRoMnYtMkg1em0wLTZoMnYtMkg1eiIvPjwvc3ZnPg==");
+}
+
+.md-sidebar--primary .md-nav__link[href$="home-assistant/home-assistant-installation/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIxLjggMTNIMjB2OGgtN3YtMy4zM2wyLjc5LTIuNzkuNzEuMTJhMi4xIDIuMSAwIDEgMCAwLTQuMiAyLjEgMi4xIDAgMCAwLTIuMSAyLjFsLjEuNzEtMS41IDEuNTJWOS42NWMuNjYtLjM2IDEuMS0xLjA1IDEuMS0xLjg1QTIuMSAyLjEgMCAwIDAgMTIgNS43YTIuMSAyLjEgMCAwIDAtMi4xIDIuMWMwIC44LjQ0IDEuNDkgMS4xIDEuODV2NS40OGwtMS41LTEuNTIuMS0uNzFhMi4xIDIuMSAwIDAgMC0yLjEtMi4xIDIuMSAyLjEgMCAwIDAtMi4xIDIuMUEyLjEgMi4xIDAgMCAwIDcuNSAxNWwuNzEtLjEyTDExIDE3LjY3VjIxSDR2LThIMi4yNWMtLjQyIDAtLjgzIDAtLjgzLS4yMS4wMS0uMjIuNDMtLjY0Ljg2LTEuMDdMMTEgM2MuMzMtLjMzLjY3LS42NyAxLS42N3MuNjcuMzQgMSAuNjdsNCA0VjZoMnYzbDIuNzggMi43OGMuNC40LjgxLjgxLjgyIDEuMDIgMCAuMi0uNC4yLS44LjJNNy41IDEyYS45LjkgMCAwIDEgLjkuOS45LjkgMCAwIDEtLjkuOS45LjkgMCAwIDEtLjktLjkuOS45IDAgMCAxIC45LS45bTkgMGMuNSAwIC45LjQuOS45cy0uNC45LS45LjlhLjkuOSAwIDAgMS0uOS0uOS45LjkgMCAwIDEgLjktLjlNMTIgNi45Yy41IDAgLjkuNC45LjlzLS40LjktLjkuOS0uOS0uNC0uOS0uOS40LS45LjktLjkiLz48L3N2Zz4=");
+}
+
+.md-sidebar--primary .md-nav__link[href$="home-assistant/home-assistant-dashboard/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIgNXYxNGgyMFY1em0xOCA3aC00VjdoNHptLTYtMmgtNFY3aDR6bS00IDJoNHY1aC00ek00IDdoNHYxMEg0em0xMiAxMHYtM2g0djN6Ii8+PC9zdmc+");
+}
+
+.md-sidebar--primary .md-nav__link[href$="home-assistant/home-assistant-reference/"]::before {
+	--nav-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0ibTE5IDEtNSA1djExbDUtNC41em0yIDR2MTMuNWMtMS4xLS4zNS0yLjMtLjUtMy41LS41LTEuNyAwLTQuMTUuNjUtNS41IDEuNVY2Yy0xLjQ1LTEuMS0zLjU1LTEuNS01LjUtMS41UzIuNDUgNC45IDEgNnYxNC42NWMwIC4yNS4yNS41LjUuNS4xIDAgLjE1LS4wNS4yNS0uMDVDMy4xIDIwLjQ1IDUuMDUgMjAgNi41IDIwYzEuOTUgMCA0LjA1LjQgNS41IDEuNSAxLjM1LS44NSAzLjgtMS41IDUuNS0xLjUgMS42NSAwIDMuMzUuMyA0Ljc1IDEuMDUuMS4wNS4xNS4wNS4yNS4wNS4yNSAwIC41LS4yNS41LS41VjZjLS42LS40NS0xLjI1LS43NS0yLTFNMTAgMTguNDFDOC43NSAxOC4wOSA3LjUgMTggNi41IDE4Yy0xLjA2IDAtMi4zMi4xOS0zLjUuNVY3LjEzYy45MS0uNCAyLjE0LS42MyAzLjUtLjYzczIuNTkuMjMgMy41LjYzeiIvPjwvc3ZnPg==");
 }
 
 .md-sidebar--primary .md-nav__link[href$="methodology/datasources/"]::before {
