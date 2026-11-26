@@ -20,7 +20,7 @@ The Wattnet integration brings the carbon footprint, water footprint, water impa
 ## Requirements
 
 - Home Assistant 2025.11 or newer.
-- A Wattnet account. The e-mail and password are the ones you registered with the token service, as described in [API Access](../api/api-access.md). Access is currently granted on request through [wattnet.eu/contact](https://wattnet.eu/contact).
+- A Wattnet credential (client ID and client secret). Create a free account in the [developer portal](https://developers.wattnet.eu) and create the credential there, as described in [API Access](../api/api-access.md#1-create-a-credential).
 
 ## Installation
 
@@ -45,12 +45,14 @@ Go to **Settings > Devices & services**, press **Add integration** and search fo
 
 ### 1. Sign in
 
-Enter the e-mail and password of your Wattnet account. The e-mail must already be registered with Wattnet.
+Enter the client ID and client secret of your Wattnet credential.
 
 ![The sign in step](../../assets/images/home-assistant/ha-sign-in.png){ loading=lazy }
 
-!!! note "Why an e-mail and password, and not a token"
-    A token expires after one day. With the e-mail and password the integration requests a fresh token whenever it needs one, so it never stops working when a token expires. The password is stored in your Home Assistant.
+!!! note "Why a credential, and not a token"
+    A token expires after one hour. With the credential the integration requests a fresh token whenever it needs one, so it never stops working when a token expires. The client secret is stored in your Home Assistant.
+
+If Wattnet later rejects the stored credential, for example because you regenerated its secret or deleted it in the developer portal, Home Assistant asks you to sign in again with the client ID and the current client secret.
 
 ### 2. Choose the zone and the scope
 
