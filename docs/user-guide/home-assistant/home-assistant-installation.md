@@ -24,18 +24,22 @@ The Wattnet integration brings the carbon footprint, water footprint, water impa
 
 ## Installation
 
-### With HACS (recommended)
+### With the Marketplace (recommended)
 
-!!! note "Install HACS first"
-    [HACS](https://hacs.xyz/) (the Home Assistant Community Store) is not part of Home Assistant, so you have to install it once before you can use it. Follow the official guide: [Download HACS](https://hacs.xyz/docs/use/download/download/). If you already have it, go on with the steps below. For more about adding a repository that is not in the HACS list, see [Custom repositories](https://hacs.xyz/docs/faq/custom_repositories/).
+The [Marketplace](https://www.home-assistant.io/integrations/marketplace/) is built into Home Assistant 2026.11 and newer, and replaces HACS. It is under **Settings > Marketplace** and only administrators can open it. The first time you open it, accept the warning about community content.
 
-1. In HACS, open the menu in the top right corner and choose **Custom repositories**.
-2. Add `https://github.com/wattnet/wattnet-home-assistant` with the category **Integration**.
-3. Search for **Wattnet**, download it and restart Home Assistant.
+1. Go to **Settings > Marketplace** and select **Add from link** in the upper right corner.
+2. Under **GitHub link**, enter `https://github.com/wattnet/wattnet-home-assistant` and select **Add**. If you have not connected GitHub yet, the Marketplace asks you to do it now: it shows a code and a link, and you approve the connection on GitHub.
+3. Open the **Wattnet** page, select **Install**, check the version and select **Install** again.
+
+When the installation finishes, the Marketplace opens the setup of the integration if it can load right away. If not, restart Home Assistant when the Marketplace asks you to and add the integration as described below. Updates appear under **Settings > Updates**, and after an update you restart Home Assistant.
+
+!!! note "Coming from HACS"
+    If you installed the integration with HACS, Home Assistant 2026.11 moves it to the Marketplace by itself and keeps it updated. You do not have to install it again.
 
 ### Manual
 
-Copy the `custom_components/wattnet` folder of the [GitHub repository](https://github.com/wattnet/wattnet-home-assistant) into the `custom_components` folder of your Home Assistant configuration and restart Home Assistant.
+On Home Assistant versions older than 2026.11, or without a GitHub account, copy the `custom_components/wattnet` folder of the [GitHub repository](https://github.com/wattnet/wattnet-home-assistant) into the `custom_components` folder of your Home Assistant configuration and restart Home Assistant.
 
 ## Set up the integration
 
