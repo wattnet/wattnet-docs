@@ -12,6 +12,7 @@ tags:
 
 - **One method per endpoint**, such as `client.get_generation(...)` and `client.get_footprints(...)`, with the parameters of the API.
 - **DataFrames by default.** For the raw JSON use `WattnetRawClient`, see [Reference](python-client-reference.md#raw-json-access).
+- **Sync and async**: `WattnetClient` and `WattnetRawClient` for scripts and notebooks, `AsyncWattnetClient` and `AsyncWattnetRawClient` for asyncio applications, see [Async clients](#async-clients).
 - **Authentication handled**: a credential that the client exchanges for a token and renews, or a static token. See [Authentication](python-client-authentication.md).
 - **Long ranges made cheap**: `resolution` lets the API average the series, and the answers are compressed by default.
 - **Typed**: zone codes, production types and scopes autocomplete in your IDE or Jupyter.
@@ -72,3 +73,23 @@ df = client.get_generation(
 ```
 
 See [Resolution](python-client-reference.md#resolution) for the methods that take it. The answers are compressed by default, see [Configuration](python-client-reference.md#configuration). The full list of methods is in the [Reference](python-client-reference.md).
+
+## Async clients
+
+For asyncio applications (for example the [Wattnet Home Assistant integration](https://github.com/wattnet/wattnet-home-assistant)) use `AsyncWattnetClient`, the counterpart of `WattnetClient`: the same methods as coroutines returning a `pandas.DataFrame`. `AsyncWattnetRawClient` does the same for `WattnetRawClient` and returns raw JSON; it is built on [aiohttp](https://docs.aiohttp.org/) and does not import pandas.
+
+```python
+import asyncio
+
+from wattnet.client import AsyncWattnetClient
+
+
+async def main() -> None:
+    async with AsyncWattnetClient(client_id="<your-client-id>", client_secret="<your-client-secret>") as client:
+        df = await client.get_footprints(zone="ES", footprint_type="carbon")
+
+
+asyncio.run(main())
+```
+
+Independent requests can run concurrently with `asyncio.gather`. Authentication, retries, `Retry-After` handling and the token refresh on a `401` behave exactly as in the synchronous clients.

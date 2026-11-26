@@ -6,7 +6,7 @@ tags:
 
 # Python Client Authentication
 
-`WattnetClient` and `WattnetRawClient` authenticate in one of two ways, given as constructor arguments.
+`WattnetClient` and `WattnetRawClient`, and their async counterparts `AsyncWattnetClient` and `AsyncWattnetRawClient`, authenticate in one of two ways, given as constructor arguments.
 
 ## Option 1: a credential
 
@@ -37,6 +37,13 @@ Both clients are context managers and close their HTTP session on exit:
 ```python
 with WattnetClient(token="<your-token>") as client:
     df = client.get_zones()
+```
+
+The async clients are used with `async with`, which closes their `aiohttp` session on exit:
+
+```python
+async with AsyncWattnetClient(token="<your-token>") as client:
+    df = await client.get_zones()
 ```
 
 `repr(client)` shows the base URL and the authentication mode, for example `WattnetClient(base_url='https://api.wattnet.eu/v1', auth=StaticTokenProvider)`, never the credentials.

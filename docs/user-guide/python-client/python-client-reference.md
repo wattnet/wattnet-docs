@@ -69,11 +69,15 @@ payload = raw.get_generation(zone="ES")  # list[dict], straight from the API
 | `issuer_url` | `WATTNET_ISSUER_URL` | `https://auth.wattnet.eu/realms/wattnet` |
 | `token_url` | `WATTNET_TOKEN_URL` | read from the issuer's discovery document |
 
-Other constructor options: `session` (bring your own `requests.Session`), `timeout`, `retry_count`, `retry_delay` and `compress`.
+Other constructor options: `session` (bring your own `requests.Session`, or an `aiohttp.ClientSession` for the async clients), `timeout`, `retry_count`, `retry_delay` and `compress`. A session you supply is never closed by the client.
 
 `compress` (default `True`) asks the API for compressed answers (gzip, and `br` or `zstd` if their packages are installed) and decompresses them for you. `compress=False` asks for none. See [Compression](../api/api-usage.md#compression).
 
 Requests are retried up to `retry_count` times (default 3, waiting `retry_delay` seconds) on connection or timeout errors and on `429` and `5xx` answers. A `429` waits for the `Retry-After` the API sends instead of the fixed delay. A `401` always triggers one token refresh and one retry, outside `retry_count`, see [Authentication](python-client-authentication.md).
+
+## Async clients
+
+`AsyncWattnetClient` and `AsyncWattnetRawClient` expose the same methods, parameters and constructor options as `WattnetClient` and `WattnetRawClient`, with every method a coroutine that must be awaited. `AsyncWattnetClient` returns a `pandas.DataFrame`; `AsyncWattnetRawClient` returns raw JSON and does not import pandas. Use them as async context managers (`async with`) so the `aiohttp` session is closed for you. See [Quickstart](python-client-quickstart.md#async-clients).
 
 ## Error handling
 
