@@ -12,6 +12,7 @@
 
 # Documentation
 
+[![Status](https://img.shields.io/badge/Status-Production%2FStable-4A8118?labelColor=1E293B)](https://docs.wattnet.eu)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fdocs.wattnet.eu&label=docs.wattnet.eu)](https://docs.wattnet.eu)
 [![Deploy](https://github.com/wattnet/wattnet-docs/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/wattnet/wattnet-docs/actions/workflows/deploy.yml)
 [![GitHub release](https://img.shields.io/github/v/release/wattnet/wattnet-docs)](https://github.com/wattnet/wattnet-docs/releases)
