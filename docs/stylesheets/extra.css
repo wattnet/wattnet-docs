@@ -580,7 +580,8 @@ body {
 /* Screenshots: a thin edge and rounded corners, so a white page does not glare in the dark theme and a dark one does not blend into the light page */
 .md-typeset p > img[src*="images/developer-portal/"],
 .md-typeset p > img[src*="images/api/"],
-.md-typeset p > img[src*="images/account/"] {
+.md-typeset p > img[src*="images/account/"],
+.md-typeset p > img[src*="images/home-assistant/"] {
 	border: 0.05rem solid var(--md-default-fg-color--lightest);
 	border-radius: 0.4rem;
 }
