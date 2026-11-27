@@ -48,6 +48,21 @@ The agent should start with `list_zones` to learn the zone codes. The parameters
 
 The results follow the [API Data Model](../api/api-data-model.md), and the resolution of the series is the one explained in [Querying the API](../api/api-usage.md#resolution). Datetimes are ISO 8601 in UTC. Ask `start` and `end` together: with only one of them the answer is only the latest data.
 
+## Example prompts
+
+Ask in plain language: the agent chooses the tools, finds the zone codes and makes the calls. These prompts work at the Free level, which allows one zone per call and the last 7 days; the agent makes one call per zone when you ask for several.
+
+| Prompt | What the agent does |
+| --- | --- |
+| *What is the carbon footprint of the electricity in Spain right now?* | Calls `get_footprints` for `ES` and gives the latest value. |
+| *Compare the carbon footprint of the electricity in Spain, France and Germany over the last 24 hours, and draw it.* | Calls `get_footprints` once per zone and compares the series. |
+| *Which sources generated the electricity of Portugal yesterday, hour by hour?* | Calls `get_generation` for `PT` with yesterday as the range. |
+| *How much of the carbon footprint of northern Italy comes from electricity imported from other zones?* | Calls `get_footprint_share` for `IT_NORTH`. Italy is split into several zones, and `list_zones` gives their codes. |
+| *What was the best time to charge an electric car in Spain in the last 7 days, by carbon footprint?* | Calls `get_footprints` for `ES` over the week and looks for the lowest hours. |
+| *Is the Wattnet service up, and are its data sources up to date?* | Calls `get_status`. |
+
+A range longer than your level allows, older data or the forecast need the Research level: the tool then answers with the `code` of the limit, as explained below, and the agent tells you.
+
 ## Limits and errors
 
 Your access level applies exactly as in the API. Every request counts as one, the list of tools included, and a client that connects makes several requests at once (it asks for the tools and a few more lists), so connecting uses a few of the requests of your minute.
@@ -71,4 +86,4 @@ These are the HTTP answers of the server itself:
 
 ## Next steps
 
-[Connecting a Client](mcp-connect.md) explains how to sign in and how to set up Claude Code, the MCP Inspector and other applications, or a program with its own credential.
+[Connecting a Client](mcp-connect.md) explains how to sign in and how to set up Claude Code, claude.ai, Claude Desktop, VS Code, the MCP Inspector and other applications, or a program with its own credential.
