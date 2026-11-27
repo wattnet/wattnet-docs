@@ -581,7 +581,8 @@ body {
 .md-typeset p > img[src*="images/developer-portal/"],
 .md-typeset p > img[src*="images/api/"],
 .md-typeset p > img[src*="images/account/"],
-.md-typeset p > img[src*="images/home-assistant/"] {
+.md-typeset p > img[src*="images/home-assistant/"],
+.md-typeset p > img[src*="images/mcp/"] {
 	border: 0.05rem solid var(--md-default-fg-color--lightest);
 	border-radius: 0.4rem;
 }
